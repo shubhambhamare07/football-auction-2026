@@ -54,6 +54,8 @@ export default function LobbyView({
     audio.playClick();
   };
 
+  const [copiedLink, setCopiedLink] = useState(false);
+
   const handleCopyCode = () => {
     navigator.clipboard.writeText(room.room_code);
     audio.playPop();
@@ -65,6 +67,13 @@ export default function LobbyView({
   const joinUrl = typeof window !== "undefined" 
     ? `${window.location.origin}/?join=${room.room_code}` 
     : `https://gfa2026.com/join/${room.room_code}`;
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(joinUrl);
+    audio.playPop();
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
 
   return (
     <div className="w-full max-w-7xl mx-auto py-6 px-4 flex flex-col lg:flex-row gap-6 relative z-10 select-none">
@@ -96,6 +105,13 @@ export default function LobbyView({
                 {copied ? <Check className="w-4 h-4 text-[#00E676]" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
+            
+            <button 
+              onClick={handleCopyLink}
+              className="mt-1 w-full py-2 bg-slate-950/40 border border-white/5 hover:border-[#00E676]/30 text-white/60 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+            >
+              {copiedLink ? "✓ Invite Link Copied!" : "📋 Copy Invite Link"}
+            </button>
           </div>
 
           {/* QR Code */}
@@ -173,9 +189,14 @@ export default function LobbyView({
             <h2 className="text-lg font-black text-white uppercase tracking-tight flex items-center gap-2">
               <Users className="w-5 h-5 text-[#00E676]" /> Active Managers
             </h2>
-            <span className="bg-slate-950 border border-white/10 text-[9px] font-black text-[#00E676] px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-              {room.players.length} / {room.settings.max_players} Logged In
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="bg-slate-950 border border-white/10 text-[9px] font-black text-[#00E676] px-3.5 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-inner">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00E676] animate-pulse" /> Ping: Active
+              </span>
+              <span className="bg-slate-950 border border-white/10 text-[9px] font-black text-[#00E676] px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-inner">
+                {room.players.length} / {room.settings.max_players} Logged In
+              </span>
+            </div>
           </div>
 
           {/* Grid of Players */}
@@ -235,9 +256,9 @@ export default function LobbyView({
             {Array.from({ length: room.settings.max_players - room.players.length }).map((_, idx) => (
               <div 
                 key={`empty-${idx}`}
-                className="border border-dashed border-white/5 bg-transparent rounded-2xl p-4 flex items-center justify-center text-center text-[10px] text-white/20 uppercase tracking-widest font-black"
+                className="border border-dashed border-white/5 bg-transparent rounded-2xl p-4 flex items-center justify-center text-center text-[10px] text-white/20 uppercase tracking-widest font-black animate-pulse"
               >
-                + Awaiting Participant
+                + Waiting for manager...
               </div>
             ))}
           </div>

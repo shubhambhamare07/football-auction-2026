@@ -34,6 +34,8 @@ export default function Page() {
   const [proposals, setProposals] = useState<any[]>([]);
   const [leaderboard, setLeaderboard] = useState<any[]>([]);
 
+  const [initialJoinCode, setInitialJoinCode] = useState("");
+
   const socket = getSocket();
 
   // Handle URL query parameters for quick joining
@@ -42,6 +44,7 @@ export default function Page() {
       const params = new URLSearchParams(window.location.search);
       const joinCode = params.get("join");
       if (joinCode) {
+        setInitialJoinCode(joinCode.toUpperCase());
         setCurrentView("join");
       }
     }
@@ -394,6 +397,7 @@ export default function Page() {
               <JoinRoomView
                 onBack={() => setCurrentView("home")}
                 onJoinRoom={handleJoinRoom}
+                initialRoomCode={initialJoinCode}
               />
             )}
 
@@ -462,12 +466,14 @@ export default function Page() {
               />
             )}
 
-            {currentView === "completed" && (
+            {currentView === "completed" && room && (
               <FinalizedView
                 leaderboard={leaderboard}
                 winnerName={leaderboard[0]?.name || null}
                 onPlayAgain={handlePlayAgain}
                 onGoHome={handleGoHome}
+                currentUsername={username}
+                room={room}
               />
             )}
           </motion.div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Send, User, ChevronRight, MessageSquare, History, ShieldAlert, Award } from "lucide-react";
+import { Send, User, ChevronRight, MessageSquare, History, ShieldAlert, Award, Trophy } from "lucide-react";
 import { Player, RoomPlayer, ChatMessage } from "../types";
 import { audio } from "../utils/audio";
 import { motion, AnimatePresence } from "framer-motion";
@@ -260,6 +260,27 @@ export default function AuctionView({
   const [inputText, setInputText] = useState("");
   const feedContainerRef = useRef<HTMLDivElement>(null);
 
+  const [revealState, setRevealState] = useState<'back' | 'flipping' | 'front'>('back');
+
+  useEffect(() => {
+    if (player) {
+      setRevealState('back');
+      const t1 = setTimeout(() => {
+        setRevealState('flipping');
+      }, 350);
+      const t2 = setTimeout(() => {
+        setRevealState('front');
+        audio.playPop();
+      }, 750);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
+    } else {
+      setRevealState('back');
+    }
+  }, [player?.name]);
+
   // Play alert ticks in last 5 seconds
   useEffect(() => {
     if (timeRemaining > 0 && timeRemaining <= 5) {
@@ -413,134 +434,168 @@ export default function AuctionView({
           </div>
         </div>
 
-        {/* Player Card Container */}
+        {/* Player Card Container with 3D Flip Reveal */}
         {player && countryStyles && tierStyles ? (
-          <div 
-            key={player.name}
-            style={{ background: countryStyles.gradient }}
-            className={`w-80 h-[480px] rounded-3xl p-6 ${tierStyles.border} ${tierStyles.glow} ${countryStyles.textColor} premium-collectible-card animate-card-entrance flex flex-col relative overflow-hidden group select-none`}
-          >
-            {/* Card Glassmorphic Shell */}
-            <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[2.5px] z-1" />
-            
-            {/* Card Shards polygonal overlay */}
-            <div className="card-shards-overlay z-2" />
-            
-            {/* Card Shine sweep hover effect */}
-            <div className="card-shine-overlay z-5" />
-
-            {/* Dynamic spotlight shadow ring */}
-            <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-white/5 blur-3xl z-1 pointer-events-none" />
-
-            {/* Card Content Wrapper */}
-            <div className="relative z-10 flex-1 flex flex-col justify-between h-full">
-              
-              {/* Top Header: Rating, Position, Flag, Tier Shield */}
-              <div className="flex justify-between items-start">
-                <div className="flex flex-col items-center">
-                  <span className="text-5xl font-black tracking-tight leading-none drop-shadow-md">
-                    {player.rating}
-                  </span>
-                  <span className="text-[10px] font-extrabold uppercase tracking-widest mt-1.5 opacity-90 px-2 py-0.5 bg-black/40 rounded-md text-white border border-white/5">
-                    {player.position}
-                  </span>
-                </div>
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-80 h-[400px] perspective-1000 relative select-none">
+              <div 
+                className="w-full h-full duration-700 transform-style-3d transition-transform"
+                style={{
+                  transform: revealState === 'front' ? 'rotateY(0deg)' : 'rotateY(180deg)'
+                }}
+              >
                 
-                {/* Flag and Tier Badge */}
-                <div className="flex items-center gap-2 bg-black/35 px-2.5 py-1.5 rounded-xl border border-white/10 shadow-inner">
-                  <span className="text-2xl filter drop-shadow-sm leading-none" title={player.country}>
-                    {countryStyles.flag}
-                  </span>
-                  <div className="w-[1px] h-4 bg-white/15" />
-                  <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-wider ${tierStyles.badgeBg}`}>
-                    {player.tier.replace("Tier ", "")}
+                {/* Back Face of the Card */}
+                <div className="absolute inset-0 backface-hidden rounded-3xl p-6 border-2 border-yellow-500/25 bg-gradient-to-b from-[#141A21] to-[#0A0D10] flex flex-col items-center justify-center text-center shadow-2xl rotate-y-180">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,215,0,0.06)_0%,transparent_70%)] pointer-events-none" />
+                  <div className="w-28 h-36 border-2 border-white/5 rounded-t-full rounded-b-xl flex items-center justify-center relative shadow-inner">
+                    <div className="w-20 h-28 border border-white/5 rounded-t-full rounded-b-lg flex flex-col items-center justify-center gap-2">
+                      <Trophy className="w-8 h-8 text-[#FFD700]/30 fill-[#FFD700]/5 animate-pulse" />
+                      <span className="text-[8px] font-black text-white/20 uppercase tracking-widest leading-none">DRAFT</span>
+                    </div>
+                  </div>
+                  <span className="text-[9px] font-black text-[#FFD700] uppercase tracking-widest mt-6 animate-pulse">
+                    Revealing footballer...
                   </span>
                 </div>
-              </div>
 
-              {/* Center: Stylized Player Silhouette */}
-              <div className="w-full h-40 flex items-center justify-center my-1 relative">
-                <div className="w-36 h-36 relative">
-                  <PlayerSilhouette tierColor={tierStyles.color} countryAccent={countryStyles.borderAccent} />
+                {/* Front Face of the Card */}
+                <div 
+                  style={{ background: countryStyles.gradient }}
+                  className={`absolute inset-0 backface-hidden rounded-3xl p-6 ${tierStyles.border} ${tierStyles.glow} ${countryStyles.textColor} premium-collectible-card flex flex-col relative overflow-hidden group shadow-2xl justify-between`}
+                >
+                  {/* Card Glassmorphic Shell */}
+                  <div className="absolute inset-0 bg-slate-950/25 backdrop-blur-[2.5px] z-1" />
+                  
+                  {/* Card Shards polygonal overlay */}
+                  <div className="card-shards-overlay z-2" />
+                  
+                  {/* Card Shine sweep effect */}
+                  <div className="card-shine-overlay z-5" />
+
+                  {/* Dynamic spotlight shadow ring */}
+                  <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-white/5 blur-3xl z-1 pointer-events-none" />
+
+                  {/* Card Content Wrapper */}
+                  <div className="relative z-10 flex-1 flex flex-col justify-between h-full">
+                    
+                    {/* Top Header: Rating, Position, Flag, Tier Shield */}
+                    <div className="flex justify-between items-start">
+                      <div className="flex flex-col items-center">
+                        <span className="text-4xl font-black tracking-tight leading-none drop-shadow-md">
+                          {player.rating}
+                        </span>
+                        <span className="text-[8px] font-extrabold uppercase tracking-widest mt-1.5 opacity-90 px-1.5 py-0.5 bg-black/40 rounded-md text-white border border-white/5">
+                          {player.position}
+                        </span>
+                      </div>
+                      
+                      {/* Flag and Tier Badge */}
+                      <div className="flex items-center gap-1.5 bg-black/35 px-2 py-1 rounded-xl border border-white/10 shadow-inner">
+                        <span className="text-xl filter drop-shadow-sm leading-none" title={player.country}>
+                          {countryStyles.flag}
+                        </span>
+                        <div className="w-[1px] h-3 bg-white/15" />
+                        <span className={`px-1.5 py-0.5 rounded text-[8px] uppercase tracking-wider ${tierStyles.badgeBg}`}>
+                          {player.tier.replace("Tier ", "")}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Center: Stylized Player Silhouette */}
+                    <div className="w-full h-32 flex items-center justify-center my-0.5 relative">
+                      <div className="w-28 h-28 relative">
+                        <PlayerSilhouette tierColor={tierStyles.color} countryAccent={countryStyles.borderAccent} />
+                      </div>
+                    </div>
+
+                    {/* Player Name */}
+                    <div className="text-center">
+                      <h2 className="text-xl font-black tracking-wider uppercase truncate drop-shadow-lg leading-none py-0.5">
+                        {player.name}
+                      </h2>
+                      <span className="text-[8px] font-bold tracking-widest uppercase opacity-60">
+                        {player.country}
+                      </span>
+                    </div>
+
+                    {/* Attribute Stats Grid */}
+                    <div className="grid grid-cols-3 gap-1 border-t border-white/10 pt-2 text-center my-0.5">
+                      <div>
+                        <span className="text-[7px] font-bold opacity-50 uppercase block">OVR</span>
+                        <span className="text-[10px] font-extrabold">{player.rating}</span>
+                      </div>
+                      <div>
+                        <span className="text-[7px] font-bold opacity-50 uppercase block">Fantasy</span>
+                        <span className="text-[10px] font-extrabold text-[#FFD700] drop-shadow-sm">{player.fantasy_score} pts</span>
+                      </div>
+                      <div>
+                        <span className="text-[7px] font-bold opacity-50 uppercase block">Starting</span>
+                        <span className="text-[10px] font-extrabold text-white/95">{formatMoney(player.starting_price)}</span>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-              </div>
 
-              {/* Player Name */}
-              <div className="text-center">
-                <h2 className="text-2xl font-black tracking-wider uppercase truncate drop-shadow-lg leading-none py-1">
-                  {player.name}
-                </h2>
-                <span className="text-[9px] font-bold tracking-widest uppercase opacity-60">
-                  {player.country}
+              </div>
+            </div>
+
+            {/* Dynamic Live Auction Status Box (Always visible below card, matching the premium e-sports HUD request!) */}
+            <div className="w-full max-w-sm bg-slate-950/90 border border-white/10 rounded-2xl p-4 flex items-center justify-between shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-1 opacity-5">
+                <Trophy className="w-12 h-12 text-[#FFD700]" />
+              </div>
+              
+              <div className="flex flex-col text-left relative z-10">
+                <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Current Active Bid</span>
+                <motion.span 
+                  key={highestBid}
+                  initial={{ scale: 0.8, filter: "brightness(1.4)" }}
+                  animate={{ scale: 1, filter: "brightness(1)" }}
+                  transition={{ type: "spring", stiffness: 350, damping: 10 }}
+                  className="text-base font-black text-[#00E676] drop-shadow-[0_0_8px_rgba(0,230,118,0.3)] mt-0.5"
+                >
+                  {formatMoney(highestBid)}
+                </motion.span>
+                <span className="text-[8px] text-white/50 truncate max-w-[140px] font-bold mt-1 uppercase tracking-wider">
+                  Manager: {highestBidder || "Awaiting bid..."}
                 </span>
               </div>
-
-              {/* Attribute Stats Grid */}
-              <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-center my-1.5">
-                <div>
-                  <span className="text-[8px] font-bold opacity-50 uppercase block">OVR</span>
-                  <span className="text-xs font-extrabold">{player.rating}</span>
-                </div>
-                <div>
-                  <span className="text-[8px] font-bold opacity-50 uppercase block">Fantasy</span>
-                  <span className="text-xs font-extrabold text-[#FFD700] drop-shadow-sm">{player.fantasy_score} pts</span>
-                </div>
-                <div>
-                  <span className="text-[8px] font-bold opacity-50 uppercase block">Starting</span>
-                  <span className="text-xs font-extrabold text-white/95">{formatMoney(player.starting_price)}</span>
-                </div>
-              </div>
-
-              {/* Dynamic Live Auction Status Box */}
-              <div className="bg-black/65 border border-white/10 rounded-2xl p-3 flex items-center justify-between mt-0.5">
-                <div className="flex flex-col text-left">
-                  <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Current Bid</span>
-                  <motion.span 
-                    key={highestBid}
-                    initial={{ scale: 0.85, filter: "brightness(1.4)" }}
-                    animate={{ scale: 1, filter: "brightness(1)" }}
-                    transition={{ type: "spring", stiffness: 350, damping: 12 }}
-                    className="text-sm font-black text-[#00E676] drop-shadow-[0_0_8px_rgba(0,230,118,0.25)]"
-                  >
-                    {formatMoney(highestBid)}
-                  </motion.span>
-                  <span className="text-[8px] text-white/50 truncate max-w-[120px] font-medium mt-0.5">
-                    by {highestBidder || "No Bids"}
+              
+              <div className="h-10 w-[1px] bg-white/10" />
+              
+              <div className="flex items-center gap-3 relative z-10">
+                <div className="flex flex-col items-end">
+                  <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Timer Status</span>
+                  <span className={`text-sm font-black tabular-nums tracking-wider ${
+                    timeRemaining <= 5 
+                      ? "text-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.4)]" 
+                      : "text-white"
+                  }`}>
+                    {timeRemaining}s
                   </span>
                 </div>
-                <div className="h-8 w-[1px] bg-white/10" />
-                <div className="flex items-center gap-2">
-                  <div className="flex flex-col items-end">
-                    <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Time Left</span>
-                    <span className={`text-xs font-black tabular-nums tracking-wide ${
-                      timeRemaining <= 5 
-                        ? "text-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.35)]" 
-                        : "text-white"
-                    }`}>
-                      {timeRemaining}s
-                    </span>
-                  </div>
-                  {/* Micro circular timer */}
-                  <div className="relative w-7 h-7 flex items-center justify-center">
-                    <svg className="w-7 h-7 transform -rotate-90">
-                      <circle cx="14" cy="14" r="11" stroke="rgba(255,255,255,0.06)" strokeWidth="2" fill="transparent" />
-                      <circle 
-                        cx="14" 
-                        cy="14" 
-                        r="11" 
-                        stroke={timeRemaining <= 5 ? "#EF4444" : "#00E676"} 
-                        strokeWidth="2" 
-                        fill="transparent" 
-                        strokeDasharray={2 * Math.PI * 11}
-                        strokeDashoffset={(2 * Math.PI * 11) * (1 - timeRemaining / roundDuration)}
-                        className="transition-all duration-1000 ease-linear"
-                      />
-                    </svg>
-                  </div>
+                {/* Micro circular timer */}
+                <div className="relative w-8 h-8 flex items-center justify-center">
+                  <svg className="w-8 h-8 transform -rotate-90">
+                    <circle cx="16" cy="16" r="13" stroke="rgba(255,255,255,0.06)" strokeWidth="2" fill="transparent" />
+                    <circle 
+                      cx="16" 
+                      cy="16" 
+                      r="13" 
+                      stroke={timeRemaining <= 5 ? "#EF4444" : "#00E676"} 
+                      strokeWidth="2.5" 
+                      fill="transparent" 
+                      strokeDasharray={2 * Math.PI * 13}
+                      strokeDashoffset={(2 * Math.PI * 13) * (1 - timeRemaining / roundDuration)}
+                      className="transition-all duration-1000 ease-linear"
+                    />
+                  </svg>
                 </div>
               </div>
-
             </div>
+
           </div>
         ) : (
           <div className="w-80 h-[480px] rounded-3xl border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 bg-[#12161A]/50 relative overflow-hidden animate-pulse">

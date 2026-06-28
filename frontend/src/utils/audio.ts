@@ -205,6 +205,52 @@ class SoundManager {
       { time: 0.5, val: 0 }
     ]);
   }
+
+  public playOutbid() {
+    // Quick two-tone warning
+    this.playTone(440, 'triangle', 0.1, [
+      { time: 0.005, val: 0.2 },
+      { time: 0.1, val: 0 }
+    ]);
+    setTimeout(() => {
+      this.playTone(330, 'triangle', 0.15, [
+        { time: 0.005, val: 0.2 },
+        { time: 0.15, val: 0 }
+      ]);
+    }, 80);
+  }
+
+  public playBoost() {
+    // Cyber slide-up synth
+    const frequencies = [600, 800, 1000, 1200];
+    frequencies.forEach((freq, idx) => {
+      setTimeout(() => {
+        this.playTone(freq, 'sine', 0.15, [
+          { time: 0.01, val: 0.1 },
+          { time: 0.15, val: 0 }
+        ]);
+      }, idx * 50);
+    });
+  }
+
+  public playTransfer() {
+    // Quick swish followed by coin
+    this.playTone(1500, 'sine', 0.1, [
+      { time: 0.01, val: 0.05 },
+      { time: 0.1, val: 0 }
+    ]);
+    setTimeout(() => {
+      this.playCoin();
+    }, 60);
+  }
+
+  public playButtonHover() {
+    // Very quiet high-pitched tactile click
+    this.playTone(1200, 'sine', 0.02, [
+      { time: 0.001, val: 0.02 },
+      { time: 0.02, val: 0 }
+    ]);
+  }
 }
 
 export const audio = new SoundManager();

@@ -7,11 +7,12 @@ import { audio } from "../utils/audio";
 interface JoinRoomViewProps {
   onBack: () => void;
   onJoinRoom: (displayName: string, roomCode: string) => void;
+  initialRoomCode?: string;
 }
 
-export default function JoinRoomView({ onBack, onJoinRoom }: JoinRoomViewProps) {
+export default function JoinRoomView({ onBack, onJoinRoom, initialRoomCode = "" }: JoinRoomViewProps) {
   const [displayName, setDisplayName] = useState("");
-  const [roomCode, setRoomCode] = useState("");
+  const [roomCode, setRoomCode] = useState(initialRoomCode);
 
   const handleJoin = (e: React.FormEvent) => {
     e.preventDefault();

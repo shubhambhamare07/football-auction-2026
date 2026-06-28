@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Download, Award, Flame, Tag, RefreshCw, Home, ChevronDown, ChevronUp, Sparkles, Coins, TrendingUp, Trophy } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { Download, Award, Flame, Tag, RefreshCw, Home, ChevronDown, ChevronUp, Sparkles, Coins, TrendingUp, Trophy, Share2, Send, Check } from "lucide-react";
 import { audio } from "../utils/audio";
 import confetti from "canvas-confetti";
 import { motion, AnimatePresence } from "framer-motion";
+import html2canvas from "html2canvas";
+import { Room } from "../types";
 
 interface LeaderboardEntry {
   name: string;
@@ -24,6 +26,8 @@ interface FinalizedViewProps {
   winnerName: string | null;
   onPlayAgain: () => void;
   onGoHome: () => void;
+  currentUsername: string;
+  room: Room;
 }
 
 export default function FinalizedView({
@@ -31,9 +35,14 @@ export default function FinalizedView({
   winnerName,
   onPlayAgain,
   onGoHome,
+  currentUsername,
+  room,
 }: FinalizedViewProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
-  
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const shareCardRef = useRef<HTMLDivElement>(null);
+
   // Trigger victory sound and confetti upon loading
   useEffect(() => {
     audio.playVictory();
@@ -50,14 +59,14 @@ export default function FinalizedView({
 
     const frame = () => {
       confetti({
-        particleCount: 4,
+        particleCount: 5,
         angle: 60,
         spread: 60,
         origin: { x: 0, y: 0.8 },
         colors: ["#00E676", "#FFD700", "#ffffff", "#2979FF"]
       });
       confetti({
-        particleCount: 4,
+        particleCount: 5,
         angle: 120,
         spread: 60,
         origin: { x: 1, y: 0.8 },
@@ -81,10 +90,79 @@ export default function FinalizedView({
     setExpandedRow(expandedRow === name ? null : name);
   };
 
+  // Find user details
+  const me = room.players.find((p) => p.name === currentUsername);
+  const rank = leaderboard.findIndex((e) => e.name === currentUsername) + 1;
+  const isWinner = rank === 1;
+
   // Extract top 3 for podium
   const p1 = leaderboard[0];
   const p2 = leaderboard[1];
   const p3 = leaderboard[2];
+
+  // Helper stats for share card
+  const squad = me?.squad || [];
+  const totalFantasy = squad.reduce((sum, f) => sum + f.fantasy_score, 0) + (me?.chemistry_score || 0);
+  const avgOvr = squad.length > 0 ? (squad.reduce((sum, f) => sum + f.rating, 0) / squad.length).toFixed(1) : "0.0";
+  const moneySpent = me ? (room.settings.budget - me.budget) : 0;
+  
+  // Highlight calculations
+  const captain = squad.find(f => f.boost_applied === "Captain") || squad.reduce((best, f) => f.fantasy_score > best.fantasy_score ? f : best, squad[0]);
+  const mvp = squad.reduce((best, f) => f.rating > best.rating ? f : best, squad[0]);
+  const marquee = squad.reduce((best, f) => f.starting_price > best.starting_price ? f : best, squad[0]);
+  
+  // Best Bargain
+  const bargain = squad.reduce((best, f) => {
+    if (!best) return f;
+    const ratioF = f.rating / Math.max(1, f.starting_price);
+    const ratioBest = best.rating / Math.max(1, best.starting_price);
+    return ratioF > ratioBest ? f : best;
+  }, squad[0]);
+
+  // Handle Download Image (html2canvas)
+  const handleDownloadCard = async () => {
+    if (!shareCardRef.current) return;
+    audio.playClick();
+    setIsGenerating(true);
+    
+    try {
+      // Small timeout to ensure DOM updates complete
+      await new Promise(r => setTimeout(r, 100));
+      
+      const canvas = await html2canvas(shareCardRef.current, {
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#080B0E",
+        scale: 2.5, // High definition
+        logging: false
+      });
+      
+      const dataUrl = canvas.toDataURL("image/png");
+      const a = document.createElement("a");
+      a.href = dataUrl;
+      a.download = `GFA2026_${currentUsername}_Standing.png`;
+      a.click();
+      audio.playCoin();
+    } catch (err) {
+      console.error("Failed to generate image share card", err);
+      alert("Error generating image card. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  // Copy result sharing link
+  const handleCopyResultLink = () => {
+    audio.playPop();
+    const shareText = `🏆 I placed Rank #${rank} with ${totalFantasy} pts in Global Football Auction 2026! Check my squad OVR: ${avgOvr}!`;
+    navigator.clipboard.writeText(shareText + " " + window.location.origin);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
+  // Sharing links
+  const twitterShare = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`🏆 I finished Rank #${rank} in Global Football Auction 2026! My squad: ${avgOvr} OVR, ${totalFantasy} pts. Join the draft: `)}&url=${encodeURIComponent(window.location.origin)}`;
+  const whatsappShare = `https://api.whatsapp.com/send?text=${encodeURIComponent(`🏆 I finished Rank #${rank} in Global Football Auction 2026! My squad: ${avgOvr} OVR, ${totalFantasy} pts. Challenge my roster here: ${window.location.origin}`)}`;
 
   return (
     <div className="w-full max-w-6xl mx-auto py-12 px-4 relative z-10 select-none">
@@ -190,6 +268,147 @@ export default function FinalizedView({
           </motion.div>
         )}
       </div>
+
+      {/* Shareable FIFA Ultimate Team-Style Standing Card Preview */}
+      {me && (
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-[2px] w-6 bg-[#00E676]" />
+            <h2 className="text-sm font-black text-[#00E676] uppercase tracking-widest">
+              Shareable Tournament Card
+            </h2>
+          </div>
+
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-10">
+            {/* The Real Canvas Render Object */}
+            <div className="p-4 bg-slate-950/40 rounded-3xl border border-white/5 shadow-2xl relative">
+              <div 
+                ref={shareCardRef}
+                id="share-squad-card"
+                className="w-[360px] h-[520px] bg-gradient-to-b from-[#0C0F12] via-[#0E1317] to-[#080B0E] border-2 border-yellow-500/20 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden select-none font-sans"
+              >
+                {/* E-sports Background design grids */}
+                <div className="absolute top-0 left-0 w-64 h-64 bg-[#00E676]/5 rounded-full blur-[70px] pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-[70px] pointer-events-none" />
+                <div className="absolute inset-4 border border-white/5 rounded-xl pointer-events-none flex flex-col justify-between p-2">
+                  <div className="w-full border-b border-white/5 pb-1 flex justify-between text-[6px] tracking-widest opacity-35 font-mono">
+                    <span>SQUAD CERTIFICATE</span>
+                    <span>ROOM #{room.room_code}</span>
+                  </div>
+                  <div className="w-full border-t border-white/5 pt-1 flex justify-between text-[6px] tracking-widest opacity-35 font-mono">
+                    <span>GLOBAL FOOTBALL AUCTION 2026</span>
+                    <span>VERIFIED</span>
+                  </div>
+                </div>
+
+                {/* Trophy & Card Brand */}
+                <div className="flex justify-between items-start relative z-10">
+                  <div>
+                    <span className="text-[7px] font-black text-yellow-500 uppercase tracking-widest block">CHAMPIONSHIP HUB</span>
+                    <span className="text-[14px] font-black text-white uppercase tracking-tight block mt-0.5">SQUAD CARD</span>
+                  </div>
+                  <Trophy className={`w-7 h-7 ${isWinner ? "text-[#FFD700] fill-[#FFD700]/10" : "text-white/40"} filter drop-shadow-md`} />
+                </div>
+
+                {/* Manager Rank Avatar */}
+                <div className="flex items-center gap-4 relative z-10 my-4 bg-slate-900/60 p-4 rounded-xl border border-white/5">
+                  <div className="w-14 h-14 rounded-full border-2 border-[#00E676] bg-slate-950 flex items-center justify-center text-xl font-black text-white uppercase shadow-lg select-none">
+                    {currentUsername[0]}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-[8px] font-black text-white/35 uppercase tracking-widest block">MANAGER</span>
+                    <h3 className="text-base font-black text-white truncate leading-none mt-0.5">{currentUsername}</h3>
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <span className="text-[8px] font-black text-[#0A0D10] bg-[#FFD700] px-1.5 py-0.5 rounded uppercase tracking-wider">
+                        Rank #{rank}
+                      </span>
+                      <span className="text-[9px] font-black text-[#00E676]">{totalFantasy} pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Squad Lineup Preview Column */}
+                <div className="flex-1 bg-slate-950/40 border border-white/5 rounded-xl p-3 flex flex-col justify-between my-2 relative z-10">
+                  <span className="text-[8px] font-black text-white/30 uppercase tracking-wider block mb-1">Draft Roster (11 + Subs)</span>
+                  <div className="grid grid-cols-2 gap-1.5 text-[10px] font-bold text-white/80">
+                    {squad.slice(0, 8).map((f, i) => (
+                      <div key={i} className="flex justify-between bg-slate-900/40 p-1.5 rounded border border-white/5">
+                        <span className="truncate max-w-[80px]">{f.name.split(" ").pop()}</span>
+                        <span className="text-yellow-500 font-extrabold text-[9px]">OVR {f.rating}</span>
+                      </div>
+                    ))}
+                    {squad.length > 8 && (
+                      <div className="col-span-2 text-center text-[7px] font-black text-white/30 uppercase tracking-widest">
+                        + {squad.length - 8} More roster substitutions
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Footer Highlights */}
+                <div className="grid grid-cols-3 gap-2 border-t border-white/5 pt-3 relative z-10 text-center">
+                  <div className="bg-slate-900/30 p-1.5 rounded-lg border border-white/5">
+                    <span className="text-[6px] text-white/30 uppercase block font-black">MVP Card</span>
+                    <span className="text-[8px] font-black text-white truncate block mt-0.5">{mvp?.name.split(" ").pop() || "None"}</span>
+                  </div>
+                  <div className="bg-slate-900/30 p-1.5 rounded-lg border border-white/5">
+                    <span className="text-[6px] text-white/30 uppercase block font-black">Best Bargain</span>
+                    <span className="text-[8px] font-black text-[#00E676] truncate block mt-0.5">{bargain?.name.split(" ").pop() || "None"}</span>
+                  </div>
+                  <div className="bg-slate-900/30 p-1.5 rounded-lg border border-white/5">
+                    <span className="text-[6px] text-white/30 uppercase block font-black">Avg OVR</span>
+                    <span className="text-[8px] font-black text-yellow-500 truncate block mt-0.5">{avgOvr} Rating</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sharing CTA Actions */}
+            <div className="flex flex-col gap-4 w-full md:w-80">
+              <span className="text-[10px] font-black text-white/45 uppercase tracking-widest">Growth & Sharing Actions</span>
+              <button 
+                onClick={handleDownloadCard}
+                disabled={isGenerating}
+                className="w-full py-4.5 bg-[#00E676] hover:bg-[#00c853] text-[#0A0D10] font-black uppercase tracking-wider rounded-xl shadow-[0_6px_20px_rgba(0,230,118,0.25)] hover:scale-102 active:scale-98 transition-all text-xs cursor-pointer flex items-center justify-center gap-2"
+              >
+                <Download className="w-4.5 h-4.5" /> 
+                {isGenerating ? "Rendering PNG..." : "Download High-Res PNG"}
+              </button>
+
+              <button 
+                onClick={handleCopyResultLink}
+                className="w-full py-4 bg-slate-900 border border-white/10 hover:border-white/20 text-white font-black uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 text-xs"
+              >
+                {copiedLink ? <Check className="w-4 h-4 text-[#00E676]" /> : <Share2 className="w-4 h-4" />}
+                {copiedLink ? "Link Copied!" : "Copy Result Link"}
+              </button>
+
+              <div className="h-[1px] bg-white/5 my-1" />
+
+              <div className="flex gap-3">
+                <a 
+                  href={twitterShare} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  onClick={() => audio.playClick()}
+                  className="flex-1 py-3 text-center bg-[#1A2129] border border-white/10 hover:bg-[#202933] text-white rounded-xl text-[10px] font-black uppercase tracking-wider cursor-pointer transition-all"
+                >
+                  Share on X
+                </a>
+                <a 
+                  href={whatsappShare} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  onClick={() => audio.playClick()}
+                  className="flex-1 py-3 text-center bg-[#25D366] text-[#0A0D10] hover:bg-[#20ba5a] rounded-xl text-[10px] font-black uppercase tracking-wider cursor-pointer transition-all"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Session Highlights */}
       <div className="mb-16">
