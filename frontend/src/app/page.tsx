@@ -99,6 +99,11 @@ export default function Page() {
       setHighestBidder(null);
       setTimeRemaining(data.time_remaining);
       audio.playWhistle();
+      if (data.player && data.player.tier === "Tier S") {
+        setTimeout(() => {
+          audio.playCheer();
+        }, 300);
+      }
     });
 
     socket.on("timer_tick", (data: any) => {
@@ -417,6 +422,7 @@ export default function Page() {
                 onSendMessage={handleSendMessage}
                 onSkipPlayer={handleSkipPlayer}
                 onForceEndAuction={handleForceEndAuction}
+                roundDuration={room.settings.timer_duration}
               />
             )}
 

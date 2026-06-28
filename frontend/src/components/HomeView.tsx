@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Trophy, Users, Zap } from "lucide-react";
+import { ArrowRight, Trophy, Users, Zap, Play, Settings, Shield } from "lucide-react";
 import { motion } from "framer-motion";
 import { audio } from "../utils/audio";
 
@@ -17,120 +17,212 @@ export default function HomeView({ onCreateRoomClick, onJoinRoomClick }: HomeVie
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center py-16 px-4 md:px-8 relative overflow-hidden pitch-grid">
-      {/* Glow Ambient */}
-      <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#00E676]/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="w-full min-h-[90vh] flex flex-col items-center justify-center py-16 px-4 md:px-8 relative overflow-hidden pitch-grid bg-[#090C0F]">
+      
+      {/* Stadium Spotlight Beams */}
+      <div className="stadium-spotlight-left" />
+      <div className="stadium-spotlight-right" />
 
-      {/* Hero Section */}
-      <div className="max-w-4xl text-center z-10 flex flex-col items-center mb-16">
+      {/* Floating Animated World Cup Flags */}
+      <div className="absolute top-20 left-[8%] animate-float-slow opacity-20 text-6xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇦🇷</div>
+      <div className="absolute top-44 right-[10%] animate-float-reverse opacity-25 text-7xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇧🇷</div>
+      <div className="absolute bottom-36 left-[6%] animate-float-reverse opacity-20 text-6xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇫🇷</div>
+      <div className="absolute bottom-48 right-[12%] animate-float-slow opacity-20 text-7xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇪🇸</div>
+      <div className="absolute top-28 right-[25%] animate-float-slow opacity-15 text-5xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇵🇹</div>
+      <div className="absolute bottom-20 left-[26%] animate-float-slow opacity-15 text-5xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇮🇹</div>
+      <div className="absolute top-64 left-[18%] animate-float-reverse opacity-10 text-4xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇩🇪</div>
+      <div className="absolute bottom-60 right-[22%] animate-float-slow opacity-10 text-4xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇳🇱</div>
+
+      {/* Animated Football Light Particles */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {Array.from({ length: 18 }).map((_, i) => (
+          <div 
+            key={i}
+            className="absolute w-1.5 h-1.5 bg-[#00E676]/25 rounded-full animate-particle"
+            style={{
+              left: `${(i * 5.7 + 13) % 100}%`,
+              bottom: `-${(i * 12) % 25}%`,
+              animationDelay: `${(i * 0.35) % 5}s`,
+              animationDuration: `${5 + (i % 4)}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Glow Ambient behind Hero */}
+      <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-[#00E676]/10 to-[#FFD700]/5 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Hero Section Container */}
+      <div className="max-w-5xl text-center z-10 flex flex-col items-center mb-20 px-4">
+        {/* Title tag */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-bold text-white/70 uppercase tracking-widest mb-6 flex items-center gap-2 backdrop-blur-md shadow-lg"
+        >
+          <Trophy className="w-3.5 h-3.5 text-[#FFD700] animate-bounce" /> FIFA World Cup 2026 Edition
+        </motion.div>
+
+        {/* Main Title */}
         <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 uppercase leading-none"
+          transition={{ duration: 0.8, type: "spring" }}
+          className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tight text-white mb-6 uppercase leading-[0.9] select-none"
         >
           Build Your Dream Team.<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E676] to-[#FFD700] text-glow-green">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#00E676] to-[#FFD700] drop-shadow-[0_0_30px_rgba(0,230,118,0.2)]">
             Win The Auction.
           </span>
         </motion.h1>
         
+        {/* Subtitle */}
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-[rgba(255,255,255,0.65)] max-w-2xl leading-relaxed mb-10"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="text-base sm:text-lg md:text-xl text-white/60 max-w-3xl leading-relaxed mb-12 font-medium"
         >
-          The most immersive multiplayer football auction experience is here. Outbid
-          your rivals, secure legendary talent, and dominate the virtual pitch.
+          The ultimate real-time multiplayer draft auction experience. Scout world-class 
+          footballers, manage your tactical budget, and outbid your rival managers in sub-second bidding wars.
         </motion.p>
 
-        {/* Hero Actions */}
+        {/* Hero Actions (CTA Buttons) */}
         <motion.div 
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center gap-5 w-full justify-center max-w-lg"
         >
+          {/* Create button */}
           <button
             onClick={() => triggerClick(onCreateRoomClick)}
-            className="w-full sm:w-auto px-8 py-4 bg-[#00E676] hover:bg-[#00c853] text-[#0A0D10] font-bold rounded-lg shadow-lg hover:shadow-[#00E676]/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-10 py-5 bg-[#00E676] hover:bg-[#00c853] text-[#0A0D10] font-black uppercase tracking-wider rounded-xl shadow-[0_10px_25px_rgba(0,230,118,0.35)] hover:shadow-[0_12px_35px_rgba(0,230,118,0.5)] transition-all duration-300 scale-100 hover:scale-[1.04] active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer relative overflow-hidden group"
           >
-            ⚽ Create Room
+            {/* Button Shine sweep */}
+            <div className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -left-1/2 group-hover:animate-[shine-sweep_1s_ease-out]" />
+            <Play className="w-5 h-5 fill-current" /> Host Tournament
           </button>
+
+          {/* Join button */}
           <button
             onClick={() => triggerClick(onJoinRoomClick)}
-            className="w-full sm:w-auto px-8 py-4 bg-[rgba(20,26,33,0.8)] hover:bg-[rgba(20,26,33,1)] border border-[rgba(255,255,255,0.08)] text-white font-bold rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:w-auto px-10 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-black uppercase tracking-wider rounded-xl hover:border-white/25 transition-all duration-300 scale-100 hover:scale-[1.04] active:scale-95 flex items-center justify-center gap-2 cursor-pointer backdrop-blur-md"
           >
-            Join Room
+            <Users className="w-5 h-5" /> Join Lobby
           </button>
+        </motion.div>
+        
+        {/* Scroll link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8"
+        >
           <a
             href="#how-to-play"
-            className="text-white/70 hover:text-white transition-colors flex items-center gap-1 font-semibold text-sm cursor-pointer mt-4 sm:mt-0"
+            className="text-white/60 hover:text-white transition-colors flex items-center gap-1.5 font-bold text-xs uppercase tracking-widest cursor-pointer"
             onClick={() => audio.playClick()}
           >
-            How To Play <ArrowRight className="w-4 h-4" />
+            How To Play Rules <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </motion.div>
       </div>
 
-      {/* Elite Features Section */}
-      <div className="w-full max-w-6xl z-10">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-8 border-l-4 border-[#00E676] pl-3 uppercase">
-          Elite Features
-        </h2>
+      {/* Features Grid */}
+      <div className="w-full max-w-6xl z-10 px-4 mt-8">
+        <div className="flex items-center gap-3 mb-10">
+          <div className="h-[2px] w-8 bg-[#00E676]" />
+          <h2 className="text-sm font-black text-[#00E676] uppercase tracking-widest">
+            Game Features
+          </h2>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
-          <div className="glass-card p-8 rounded-xl flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#00E676]/10 flex items-center justify-center text-[#00E676]">
-              <Zap className="w-6 h-6" />
+          {/* Feature Card 1 */}
+          <div className="glass-card p-8 rounded-2xl flex flex-col gap-5 border border-white/5 relative overflow-hidden group hover:border-[#00E676]/20">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#00E676]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="w-14 h-14 rounded-xl bg-[#00E676]/10 flex items-center justify-center text-[#00E676] shadow-inner border border-[#00E676]/10">
+              <Zap className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-white uppercase">Real-time Bidding</h3>
-            <p className="text-sm text-[rgba(255,255,255,0.55)] leading-relaxed">
-              Experience the adrenaline of live auctions. Compete against managers
-              worldwide in sub-second bidding wars to secure top-tier talent.
-            </p>
+            <div>
+              <h3 className="text-lg font-extrabold text-white uppercase tracking-wide mb-2">Real-time Bidding</h3>
+              <p className="text-sm text-white/50 leading-relaxed font-medium">
+                Experience sub-second bidding updates synced via WebSockets. Counter-bid in real-time as the timer ticks down to secure S-tier stars.
+              </p>
+            </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="glass-card p-8 rounded-xl flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#FFD700]/10 flex items-center justify-center text-[#FFD700]">
-              <Trophy className="w-6 h-6" />
+          {/* Feature Card 2 */}
+          <div className="glass-card p-8 rounded-2xl flex flex-col gap-5 border border-white/5 relative overflow-hidden group hover:border-[#FFD700]/20">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#FFD700]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="w-14 h-14 rounded-xl bg-[#FFD700]/10 flex items-center justify-center text-[#FFD700] shadow-inner border border-[#FFD700]/10">
+              <Trophy className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-white uppercase">Global Leaderboards</h3>
-            <p className="text-sm text-[rgba(255,255,255,0.55)] leading-relaxed">
-              Climb the ranks by assembling the most valuable squads. Prove your
-              scouting prowess and strategic mastery on the world stage.
-            </p>
+            <div>
+              <h3 className="text-lg font-extrabold text-white uppercase tracking-wide mb-2">Dynamic Chemistry</h3>
+              <p className="text-sm text-white/50 leading-relaxed font-medium">
+                Draft players strategically. Assemble matching nations or tactical lines to generate Chemistry boosts, multiplying your fantasy total.
+              </p>
+            </div>
           </div>
 
-          {/* Card 3 */}
-          <div className="glass-card p-8 rounded-xl flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#2979FF]/10 flex items-center justify-center text-[#2979FF]">
-              <Users className="w-6 h-6" />
+          {/* Feature Card 3 */}
+          <div className="glass-card p-8 rounded-2xl flex flex-col gap-5 border border-white/5 relative overflow-hidden group hover:border-[#2979FF]/20">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#2979FF]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="w-14 h-14 rounded-xl bg-[#2979FF]/10 flex items-center justify-center text-[#2979FF] shadow-inner border border-[#2979FF]/10">
+              <Users className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-white uppercase">Ultimate Team Management</h3>
-            <p className="text-sm text-[rgba(255,255,255,0.55)] leading-relaxed">
-              Balance your budget, manage player chemistry, and adapt your tactics.
-              Every bid shapes the destiny of your franchise.
-            </p>
+            <div>
+              <h3 className="text-lg font-extrabold text-white uppercase tracking-wide mb-2">Tactical Boost Center</h3>
+              <p className="text-sm text-white/50 leading-relaxed font-medium">
+                Use your remaining budget to buy tactical boost cards (e.g. Captain, Playmaker, SuperSub) to give selected players custom OVR boosts.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Rules Section Anchor */}
-      <div id="how-to-play" className="w-full max-w-6xl mt-24 z-10 glass-card p-8 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[#12161A]/40">
-        <h2 className="text-xl font-bold text-white mb-4 uppercase">How To Play</h2>
-        <ul className="list-disc pl-6 text-sm text-[rgba(255,255,255,0.6)] space-y-2 leading-relaxed">
-          <li>Create or join a private room using a 6-character access code.</li>
-          <li>Each manager starts with a virtual budget (€500 Million by default).</li>
-          <li>Bid on randomly served world-class players. Tier S starting values are highest.</li>
-          <li>Apply one Boost Card (Captain, Playmaker, etc.) to double or increase points.</li>
-          <li>Once rosters are completed, squads are placed on the virtual pitch.</li>
-          <li>The manager with the highest total squad Fantasy Points wins the championship trophy instantly!</li>
-        </ul>
+      {/* Redesigned How to Play Card */}
+      <div 
+        id="how-to-play" 
+        className="w-full max-w-6xl mt-24 z-10 glass-card p-8 sm:p-10 rounded-2xl border border-white/5 bg-[#10141A]/50 relative overflow-hidden"
+      >
+        <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-gradient-to-tr from-[#00E676]/5 to-transparent rounded-full blur-[100px] pointer-events-none" />
+        
+        <h2 className="text-2xl font-black text-white uppercase tracking-wider mb-8 flex items-center gap-2">
+          <Shield className="w-6 h-6 text-[#00E676]" /> How The Auction Works
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-white/60">
+          <div className="flex gap-4">
+            <div className="w-8 h-8 rounded-full bg-[#00E676]/10 text-[#00E676] flex items-center justify-center font-black flex-shrink-0 border border-[#00E676]/15">1</div>
+            <div>
+              <h4 className="font-extrabold text-white uppercase tracking-wide mb-2">1. Setup & Budget</h4>
+              <p className="leading-relaxed">Host a lobby, adjust options, and share the code. Each manager starts with an equal starting budget (up to €2 Billion).</p>
+            </div>
+          </div>
+          
+          <div className="flex gap-4">
+            <div className="w-8 h-8 rounded-full bg-[#00E676]/10 text-[#00E676] flex items-center justify-center font-black flex-shrink-0 border border-[#00E676]/15">2</div>
+            <div>
+              <h4 className="font-extrabold text-white uppercase tracking-wide mb-2">2. Live Bidding Wars</h4>
+              <p className="leading-relaxed">Players are drawn one-by-one. Place increments or custom bids. The highest bidder secures the player when the timer hits zero.</p>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="w-8 h-8 rounded-full bg-[#00E676]/10 text-[#00E676] flex items-center justify-center font-black flex-shrink-0 border border-[#00E676]/15">3</div>
+            <div>
+              <h4 className="font-extrabold text-white uppercase tracking-wide mb-2">3. Trades, Boosts & Glory</h4>
+              <p className="leading-relaxed">After the draft, negotiate direct trades, purchase boosts to multiply ratings, and climb the final fantasy rating standings to win the cup!</p>
+            </div>
+          </div>
+        </div>
       </div>
+      
     </div>
   );
 }

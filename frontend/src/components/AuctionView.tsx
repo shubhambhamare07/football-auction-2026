@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Send, User, ChevronRight, MessageSquare, History, ShieldAlert } from "lucide-react";
+import { Send, User, ChevronRight, MessageSquare, History, ShieldAlert, Award } from "lucide-react";
 import { Player, RoomPlayer, ChatMessage } from "../types";
 import { audio } from "../utils/audio";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface AuctionViewProps {
   player: Player | null;
@@ -17,6 +18,7 @@ interface AuctionViewProps {
   onSendMessage: (text: string) => void;
   onSkipPlayer: () => void;
   onForceEndAuction: () => void;
+  roundDuration?: number;
 }
 
 // Dynamically map country to flag theme gradients and details
@@ -178,8 +180,8 @@ const getCardTierClass = (tier: string = "") => {
   const t = tier.toUpperCase();
   if (t.includes("S")) {
     return {
-      border: "border-tier-s",
-      glow: "shadow-[0_0_35px_rgba(255,215,0,0.15)]",
+      border: "border-tier-s holographic-card",
+      glow: "shadow-[0_0_35px_rgba(255,215,0,0.25)]",
       badgeBg: "bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black",
       color: "#FFD700"
     };
@@ -187,24 +189,24 @@ const getCardTierClass = (tier: string = "") => {
   if (t.includes("A")) {
     return {
       border: "border-tier-a",
-      glow: "shadow-[0_0_30px_rgba(147,51,234,0.15)]",
-      badgeBg: "bg-purple-600 text-white font-extrabold",
-      color: "#A855F7"
+      glow: "shadow-[0_0_30px_rgba(192,192,192,0.2)]",
+      badgeBg: "bg-gradient-to-r from-slate-300 to-slate-200 text-slate-950 font-extrabold",
+      color: "#C0C0C0"
     };
   }
   if (t.includes("B")) {
     return {
       border: "border-tier-b",
-      glow: "shadow-[0_0_25px_rgba(59,130,246,0.15)]",
-      badgeBg: "bg-blue-600 text-white font-extrabold",
-      color: "#3B82F6"
+      glow: "shadow-[0_0_25px_rgba(205,127,50,0.15)]",
+      badgeBg: "bg-gradient-to-r from-[#8C5220] to-[#CD7F32] text-white font-extrabold",
+      color: "#CD7F32"
     };
   }
   return {
     border: "border-tier-c",
-    glow: "shadow-[0_0_20px_rgba(148,163,184,0.15)]",
-    badgeBg: "bg-slate-500 text-slate-950 font-bold",
-    color: "#94A3B8"
+    glow: "shadow-md",
+    badgeBg: "bg-slate-700 text-slate-200 font-bold",
+    color: "#64748B"
   };
 };
 
@@ -252,10 +254,18 @@ export default function AuctionView({
   onSendMessage,
   onSkipPlayer,
   onForceEndAuction,
+  roundDuration = 30
 }: AuctionViewProps) {
   const [activeTab, setActiveTab] = useState<"bids" | "chat">("bids");
   const [inputText, setInputText] = useState("");
   const feedContainerRef = useRef<HTMLDivElement>(null);
+
+  // Play alert ticks in last 5 seconds
+  useEffect(() => {
+    if (timeRemaining > 0 && timeRemaining <= 5) {
+      audio.playTick();
+    }
+  }, [timeRemaining]);
   
   // Find current user profile
   const me = playersList.find((p) => p.name === currentUsername);
@@ -373,7 +383,7 @@ export default function AuctionView({
       <div className="flex-1 flex flex-col items-center justify-center">
         
         {/* Timer Countdown Display */}
-        <div className="relative w-36 h-36 flex items-center justify-center mb-6">
+        <div className={`relative w-36 h-36 flex items-center justify-center mb-6 ${timeRemaining <= 5 ? "animate-pulse scale-105" : ""} transition-all duration-300`}>
           <svg className="absolute w-full h-full -rotate-90">
             <circle
               cx="72"
@@ -387,17 +397,17 @@ export default function AuctionView({
               cx="72"
               cy="72"
               r="60"
-              stroke="#00E676"
+              stroke={timeRemaining <= 5 ? "#EF4444" : "#00E676"}
               strokeWidth="6"
               fill="transparent"
               strokeDasharray={2 * Math.PI * 60}
-              strokeDashoffset={2 * Math.PI * 60 * (1 - timeRemaining / 15)}
+              strokeDashoffset={2 * Math.PI * 60 * (1 - timeRemaining / roundDuration)}
               className="transition-all duration-1000 ease-linear"
             />
           </svg>
           <div className="flex flex-col items-center select-none z-10">
             <span className="text-[9px] font-bold uppercase tracking-widest text-white/40">Time Remaining</span>
-            <span className="text-4xl font-extrabold text-white tabular-nums tracking-tight">
+            <span className={`text-4xl font-extrabold tabular-nums tracking-tight ${timeRemaining <= 5 ? "text-red-500 scale-110 drop-shadow-[0_0_12px_rgba(239,68,68,0.4)]" : "text-white"} transition-all duration-300`}>
               00:{timeRemaining.toString().padStart(2, "0")}
             </span>
           </div>
@@ -485,23 +495,48 @@ export default function AuctionView({
               <div className="bg-black/65 border border-white/10 rounded-2xl p-3 flex items-center justify-between mt-0.5">
                 <div className="flex flex-col text-left">
                   <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Current Bid</span>
-                  <span className="text-sm font-black text-[#00E676] drop-shadow-[0_0_8px_rgba(0,230,118,0.25)]">
+                  <motion.span 
+                    key={highestBid}
+                    initial={{ scale: 0.85, filter: "brightness(1.4)" }}
+                    animate={{ scale: 1, filter: "brightness(1)" }}
+                    transition={{ type: "spring", stiffness: 350, damping: 12 }}
+                    className="text-sm font-black text-[#00E676] drop-shadow-[0_0_8px_rgba(0,230,118,0.25)]"
+                  >
                     {formatMoney(highestBid)}
-                  </span>
+                  </motion.span>
                   <span className="text-[8px] text-white/50 truncate max-w-[120px] font-medium mt-0.5">
                     by {highestBidder || "No Bids"}
                   </span>
                 </div>
                 <div className="h-8 w-[1px] bg-white/10" />
-                <div className="flex flex-col items-end">
-                  <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Time Left</span>
-                  <span className={`text-sm font-black tabular-nums tracking-wide ${
-                    timeRemaining <= 5 
-                      ? "text-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.35)]" 
-                      : "text-white"
-                  }`}>
-                    00:{timeRemaining.toString().padStart(2, "0")}
-                  </span>
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col items-end">
+                    <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Time Left</span>
+                    <span className={`text-xs font-black tabular-nums tracking-wide ${
+                      timeRemaining <= 5 
+                        ? "text-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.35)]" 
+                        : "text-white"
+                    }`}>
+                      {timeRemaining}s
+                    </span>
+                  </div>
+                  {/* Micro circular timer */}
+                  <div className="relative w-7 h-7 flex items-center justify-center">
+                    <svg className="w-7 h-7 transform -rotate-90">
+                      <circle cx="14" cy="14" r="11" stroke="rgba(255,255,255,0.06)" strokeWidth="2" fill="transparent" />
+                      <circle 
+                        cx="14" 
+                        cy="14" 
+                        r="11" 
+                        stroke={timeRemaining <= 5 ? "#EF4444" : "#00E676"} 
+                        strokeWidth="2" 
+                        fill="transparent" 
+                        strokeDasharray={2 * Math.PI * 11}
+                        strokeDashoffset={(2 * Math.PI * 11) * (1 - timeRemaining / roundDuration)}
+                        className="transition-all duration-1000 ease-linear"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
@@ -519,14 +554,27 @@ export default function AuctionView({
         )}
 
         {/* Current Highest Bid Section */}
-        <div className="w-full max-w-md bg-[#141A21] border border-[rgba(255,255,255,0.06)] rounded-xl py-4 px-6 text-center mt-8">
-          <span className="text-[10px] font-bold text-white/40 uppercase tracking-wider">Current Highest Bid</span>
-          <div className="text-3xl font-extrabold text-white tracking-tight mt-1">
+        <div className="w-full max-w-md bg-[#13171C]/90 border border-white/5 shadow-2xl rounded-2xl py-4 px-6 text-center mt-8 relative overflow-hidden backdrop-blur-md">
+          {/* Subtle background glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#00E676]/5 to-transparent pointer-events-none" />
+          <span className="text-[10px] font-black text-white/40 uppercase tracking-widest block">Current Highest Bid</span>
+          <motion.div 
+            key={highestBid}
+            initial={{ scale: 0.9, y: 5, opacity: 0.8 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 12 }}
+            className="text-4xl font-black text-white tracking-tight mt-1 select-none drop-shadow-[0_0_12px_rgba(255,255,255,0.1)]"
+          >
             {formatMoney(highestBid)}
-          </div>
-          <div className="text-xs text-[#00E676] font-semibold mt-0.5">
-            by {highestBidder || "No Bids Placed"}
-          </div>
+          </motion.div>
+          <motion.div 
+            key={highestBidder}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xs text-[#00E676] font-bold mt-1 tracking-wide"
+          >
+            {highestBidder ? `👑 leading bid by ${highestBidder}` : "⏳ No bids placed yet"}
+          </motion.div>
         </div>
 
         {/* Bidding Actions */}
@@ -617,11 +665,32 @@ export default function AuctionView({
             className="flex-1 overflow-y-auto pr-1 flex flex-col gap-2.5 text-xs pb-4"
           >
             {activeTab === "bids" ? (
-              bidMessages.map((msg, idx) => (
-                <div key={idx} className="bg-[#1A2129]/40 border border-[rgba(255,255,255,0.03)] px-3 py-2 rounded-lg text-white/50 text-[11px] leading-relaxed text-center">
-                  {msg.text}
-                </div>
-              ))
+              bidMessages.map((msg, idx) => {
+                const text = msg.text;
+                if (text.startsWith("SOLD!")) {
+                  return (
+                    <div key={idx} className="bg-gradient-to-r from-amber-500/20 to-yellow-500/10 border border-yellow-500/35 px-3 py-2.5 rounded-lg text-yellow-100 text-[11px] leading-relaxed flex items-center gap-2 shadow-[0_0_15px_rgba(234,179,8,0.08)]">
+                      <span className="text-sm">🏆</span>
+                      <div className="flex-1 font-semibold">{text}</div>
+                    </div>
+                  );
+                }
+                if (text.startsWith("SKIPPED:") || text.startsWith("UNSOLD:")) {
+                  return (
+                    <div key={idx} className="bg-red-950/20 border border-red-500/20 px-3 py-2.5 rounded-lg text-red-300/80 text-[11px] leading-relaxed flex items-center gap-2">
+                      <span className="text-sm">❌</span>
+                      <div className="flex-1 font-medium">{text}</div>
+                    </div>
+                  );
+                }
+                // Regular bid message
+                return (
+                  <div key={idx} className="bg-white/5 border border-white/5 px-3 py-2.5 rounded-lg text-white/70 text-[11px] leading-relaxed flex items-center gap-2 hover:bg-white/10 transition-colors">
+                    <span className="text-[#00E676] text-xs font-bold">🟢</span>
+                    <div className="flex-1 font-medium">{text}</div>
+                  </div>
+                );
+              })
             ) : (
               chatMessages
                 .filter(m => m.type === "chat")
