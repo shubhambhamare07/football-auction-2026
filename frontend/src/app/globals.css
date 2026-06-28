@@ -353,3 +353,86 @@
   pointer-events: none;
   animation: spotlight-swing 11s infinite ease-in-out;
 }
+
+/* Flag Waving Animation */
+@keyframes flag-wave {
+  0%, 100% {
+    transform: perspective(800px) rotateX(12deg) rotateY(-15deg) skewY(-2deg) scale3d(1, 1, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    transform: perspective(800px) rotateX(16deg) rotateY(-8deg) skewY(2deg) scale3d(1.03, 1.03, 1.03);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.wavy-flag-3d {
+  animation: flag-wave 6s infinite ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  object-fit: cover;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+/* Flying Football Animation */
+@keyframes football-fly {
+  0% {
+    transform: translate3d(-15vw, 115vh, 0) scale3d(0.3, 0.3, 1) rotate(0deg);
+    filter: blur(5px);
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.85;
+    filter: blur(1.5px);
+  }
+  10% {
+    transform: translate3d(115vw, -15vh, 0) scale3d(1.3, 1.3, 1) rotate(1080deg);
+    filter: blur(3.5px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(115vw, -15vh, 0) scale3d(1.3, 1.3, 1) rotate(1080deg);
+    filter: blur(5px);
+    opacity: 0;
+  }
+}
+
+.animate-football-fly {
+  animation: football-fly 16s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Fog Drifting Animation */
+@keyframes fog-drift {
+  0% { transform: translate3d(-8%, 0, 0) scale3d(1, 1, 1); }
+  50% { transform: translate3d(8%, 3%, 0) scale3d(1.05, 0.95, 1); }
+  100% { transform: translate3d(-8%, 0, 0) scale3d(1, 1, 1); }
+}
+
+.stadium-fog-layer {
+  position: absolute;
+  bottom: -15%;
+  left: -20%;
+  width: 140%;
+  height: 40%;
+  background: radial-gradient(ellipse at bottom, rgba(0, 230, 118, 0.04) 0%, rgba(9, 12, 15, 0) 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 0;
+  animation: fog-drift 28s infinite ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Lens Flare */
+.stadium-lens-flare {
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(0, 230, 118, 0.03) 25%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(12px);
+}

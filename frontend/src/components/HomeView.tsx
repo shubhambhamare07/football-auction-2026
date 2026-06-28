@@ -23,15 +23,26 @@ export default function HomeView({ onCreateRoomClick, onJoinRoomClick }: HomeVie
       <div className="stadium-spotlight-left" />
       <div className="stadium-spotlight-right" />
 
-      {/* Floating Animated World Cup Flags */}
-      <div className="absolute top-20 left-[8%] animate-float-slow opacity-20 text-6xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇦🇷</div>
-      <div className="absolute top-44 right-[10%] animate-float-reverse opacity-25 text-7xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇧🇷</div>
-      <div className="absolute bottom-36 left-[6%] animate-float-reverse opacity-20 text-6xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇫🇷</div>
-      <div className="absolute bottom-48 right-[12%] animate-float-slow opacity-20 text-7xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇪🇸</div>
-      <div className="absolute top-28 right-[25%] animate-float-slow opacity-15 text-5xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇵🇹</div>
-      <div className="absolute bottom-20 left-[26%] animate-float-slow opacity-15 text-5xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇮🇹</div>
-      <div className="absolute top-64 left-[18%] animate-float-reverse opacity-10 text-4xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇩🇪</div>
-      <div className="absolute bottom-60 right-[22%] animate-float-slow opacity-10 text-4xl select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">🇳🇱</div>
+      {/* Cinematic Stadium atmosphere overlays */}
+      <div className="stadium-lens-flare" />
+      <div className="stadium-fog-layer" />
+      
+      {/* Cinematic Flying Football with Motion Blur */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        <div className="absolute animate-football-fly w-full h-full">
+          <span className="absolute text-5xl select-none" style={{ left: 0, top: 0 }}>⚽</span>
+        </div>
+      </div>
+
+      {/* Floating Animated World Cup Flags (3D Wavy Images) */}
+      <img src="https://flagcdn.com/w160/ar.png" alt="Argentina" className="absolute top-20 left-[8%] animate-float-slow w-20 h-12 wavy-flag-3d opacity-20 select-none pointer-events-none filter blur-[1px]" />
+      <img src="https://flagcdn.com/w160/br.png" alt="Brazil" className="absolute top-44 right-[10%] animate-float-reverse w-24 h-14 wavy-flag-3d opacity-25 select-none pointer-events-none filter blur-[0.5px]" />
+      <img src="https://flagcdn.com/w160/fr.png" alt="France" className="absolute bottom-36 left-[6%] animate-float-reverse w-20 h-12 wavy-flag-3d opacity-20 select-none pointer-events-none filter blur-[1.5px]" />
+      <img src="https://flagcdn.com/w160/es.png" alt="Spain" className="absolute bottom-48 right-[12%] animate-float-slow w-24 h-14 wavy-flag-3d opacity-20 select-none pointer-events-none filter blur-[1px]" />
+      <img src="https://flagcdn.com/w160/pt.png" alt="Portugal" className="absolute top-28 right-[25%] animate-float-slow w-18 h-11 wavy-flag-3d opacity-15 select-none pointer-events-none filter blur-[2px]" />
+      <img src="https://flagcdn.com/w160/it.png" alt="Italy" className="absolute bottom-20 left-[26%] animate-float-slow w-18 h-11 wavy-flag-3d opacity-15 select-none pointer-events-none filter blur-[2px]" />
+      <img src="https://flagcdn.com/w160/de.png" alt="Germany" className="absolute top-64 left-[18%] animate-float-reverse w-16 h-10 wavy-flag-3d opacity-12 select-none pointer-events-none filter blur-[2.5px]" />
+      <img src="https://flagcdn.com/w160/nl.png" alt="Netherlands" className="absolute bottom-60 right-[22%] animate-float-slow w-16 h-10 wavy-flag-3d opacity-12 select-none pointer-events-none filter blur-[2.5px]" />
 
       {/* Animated Football Light Particles */}
       <div className="absolute inset-0 pointer-events-none z-0">
