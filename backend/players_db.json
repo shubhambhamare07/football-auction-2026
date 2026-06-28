@@ -1,0 +1,1622 @@
+[
+  {
+    "name": "Lautaro Martínez",
+    "country": "Argentina",
+    "position": "Striker",
+    "rating": 92,
+    "tier": "Tier S",
+    "fantasy_score": 93,
+    "starting_price": 190000000
+  },
+  {
+    "name": "Lionel Messi",
+    "country": "Argentina",
+    "position": "Right Winger",
+    "rating": 90,
+    "tier": "Tier A",
+    "fantasy_score": 94,
+    "starting_price": 160000000
+  },
+  {
+    "name": "Alexis Mac Allister",
+    "country": "Argentina",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Enzo Fernández",
+    "country": "Argentina",
+    "position": "Midfielder",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Emiliano Martínez",
+    "country": "Argentina",
+    "position": "Goalkeeper",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Rodrigo De Paul",
+    "country": "Argentina",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Julián Álvarez",
+    "country": "Argentina",
+    "position": "Forward",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Cristian Romero",
+    "country": "Argentina",
+    "position": "Center Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Lisandro Martínez",
+    "country": "Argentina",
+    "position": "Center Back",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Nahuel Molina",
+    "country": "Argentina",
+    "position": "Right Back",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Nicolás Tagliafico",
+    "country": "Argentina",
+    "position": "Left Back",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Alejandro Garnacho",
+    "country": "Argentina",
+    "position": "Left Winger",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Exequiel Palacios",
+    "country": "Argentina",
+    "position": "Midfielder",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Nicolás Otamendi",
+    "country": "Argentina",
+    "position": "Center Back",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Gerónimo Rulli",
+    "country": "Argentina",
+    "position": "Goalkeeper",
+    "rating": 76,
+    "tier": "Tier B",
+    "fantasy_score": 74,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Vinícius Júnior",
+    "country": "Brazil",
+    "position": "Left Winger",
+    "rating": 94,
+    "tier": "Tier S",
+    "fantasy_score": 95,
+    "starting_price": 215000000
+  },
+  {
+    "name": "Rodrygo",
+    "country": "Brazil",
+    "position": "Forward",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Bruno Guimarães",
+    "country": "Brazil",
+    "position": "Midfielder",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Éder Militão",
+    "country": "Brazil",
+    "position": "Center Back",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Gabriel Maglhães",
+    "country": "Brazil",
+    "position": "Center Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Alisson Becker",
+    "country": "Brazil",
+    "position": "Goalkeeper",
+    "rating": 90,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 165000000
+  },
+  {
+    "name": "Lucas Paquetá",
+    "country": "Brazil",
+    "position": "Midfielder",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Raphinha",
+    "country": "Brazil",
+    "position": "Right Winger",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Douglas Luiz",
+    "country": "Brazil",
+    "position": "Midfielder",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Marquinhos",
+    "country": "Brazil",
+    "position": "Center Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Ederson",
+    "country": "Brazil",
+    "position": "Goalkeeper",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Endrick",
+    "country": "Brazil",
+    "position": "Striker",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 110000000
+  },
+  {
+    "name": "Savinho",
+    "country": "Brazil",
+    "position": "Right Winger",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Bremer",
+    "country": "Brazil",
+    "position": "Center Back",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Danilo",
+    "country": "Brazil",
+    "position": "Right Back",
+    "rating": 78,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Kylian Mbappé",
+    "country": "France",
+    "position": "Striker",
+    "rating": 95,
+    "tier": "Tier S",
+    "fantasy_score": 96,
+    "starting_price": 220000000
+  },
+  {
+    "name": "Antoine Griezmann",
+    "country": "France",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 92,
+    "starting_price": 155000000
+  },
+  {
+    "name": "Aurélien Tchouaméni",
+    "country": "France",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Eduardo Camavinga",
+    "country": "France",
+    "position": "Midfielder",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 145000000
+  },
+  {
+    "name": "William Saliba",
+    "country": "France",
+    "position": "Center Back",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 92,
+    "starting_price": 175000000
+  },
+  {
+    "name": "Theo Hernández",
+    "country": "France",
+    "position": "Left Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Mike Maignan",
+    "country": "France",
+    "position": "Goalkeeper",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Ousmane Dembélé",
+    "country": "France",
+    "position": "Right Winger",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Dayot Upamecano",
+    "country": "France",
+    "position": "Center Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 82,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Jules Koundé",
+    "country": "France",
+    "position": "Right Back",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Ibrahima Konaté",
+    "country": "France",
+    "position": "Center Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Marcus Thuram",
+    "country": "France",
+    "position": "Striker",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Warren Zaïre-Emery",
+    "country": "France",
+    "position": "Midfielder",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Bradley Barcola",
+    "country": "France",
+    "position": "Left Winger",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 115000000
+  },
+  {
+    "name": "Adrien Rabiot",
+    "country": "France",
+    "position": "Midfielder",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Rodri",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 95,
+    "tier": "Tier S",
+    "fantasy_score": 96,
+    "starting_price": 220000000
+  },
+  {
+    "name": "Lamine Yamal",
+    "country": "Spain",
+    "position": "Right Winger",
+    "rating": 93,
+    "tier": "Tier S",
+    "fantasy_score": 94,
+    "starting_price": 210000000
+  },
+  {
+    "name": "Pedri",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Nico Williams",
+    "country": "Spain",
+    "position": "Left Winger",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 155000000
+  },
+  {
+    "name": "Dani Olmo",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Dani Carvajal",
+    "country": "Spain",
+    "position": "Right Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Unai Simón",
+    "country": "Spain",
+    "position": "Goalkeeper",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Robin Le Normand",
+    "country": "Spain",
+    "position": "Center Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Aymeric Laporte",
+    "country": "Spain",
+    "position": "Center Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Fabian Ruiz",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Grimaldo",
+    "country": "Spain",
+    "position": "Left Back",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Martin Zubimendi",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Álvaro Morata",
+    "country": "Spain",
+    "position": "Striker",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Gavi",
+    "country": "Spain",
+    "position": "Midfielder",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "David Raya",
+    "country": "Spain",
+    "position": "Goalkeeper",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Bruno Fernandes",
+    "country": "Portugal",
+    "position": "Midfielder",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 92,
+    "starting_price": 170000000
+  },
+  {
+    "name": "Bernardo Silva",
+    "country": "Portugal",
+    "position": "Midfielder",
+    "rating": 90,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 165000000
+  },
+  {
+    "name": "Rúben Dias",
+    "country": "Portugal",
+    "position": "Center Back",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 175000000
+  },
+  {
+    "name": "Rafael Leão",
+    "country": "Portugal",
+    "position": "Left Winger",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Cristiano Ronaldo",
+    "country": "Portugal",
+    "position": "Striker",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Diogo Costa",
+    "country": "Portugal",
+    "position": "Goalkeeper",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 140000000
+  },
+  {
+    "name": "João Palhinha",
+    "country": "Portugal",
+    "position": "Midfielder",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Vitinha",
+    "country": "Portugal",
+    "position": "Midfielder",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Nuno Mendes",
+    "country": "Portugal",
+    "position": "Left Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "João Cancelo",
+    "country": "Portugal",
+    "position": "Right Back",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 85,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Diogo Jota",
+    "country": "Portugal",
+    "position": "Forward",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Gonçalo Inácio",
+    "country": "Portugal",
+    "position": "Center Back",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 105000000
+  },
+  {
+    "name": "António Silva",
+    "country": "Portugal",
+    "position": "Center Back",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 95000000
+  },
+  {
+    "name": "João Neves",
+    "country": "Portugal",
+    "position": "Midfielder",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Francisco Conceição",
+    "country": "Portugal",
+    "position": "Right Winger",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Jude Bellingham",
+    "country": "England",
+    "position": "Midfielder",
+    "rating": 94,
+    "tier": "Tier S",
+    "fantasy_score": 95,
+    "starting_price": 215000000
+  },
+  {
+    "name": "Harry Kane",
+    "country": "England",
+    "position": "Striker",
+    "rating": 92,
+    "tier": "Tier S",
+    "fantasy_score": 94,
+    "starting_price": 195000000
+  },
+  {
+    "name": "Bukayo Saka",
+    "country": "England",
+    "position": "Right Winger",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 175000000
+  },
+  {
+    "name": "Phil Foden",
+    "country": "England",
+    "position": "Midfielder",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 170000000
+  },
+  {
+    "name": "Declan Rice",
+    "country": "England",
+    "position": "Midfielder",
+    "rating": 90,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 165000000
+  },
+  {
+    "name": "John Stones",
+    "country": "England",
+    "position": "Center Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Jordan Pickford",
+    "country": "England",
+    "position": "Goalkeeper",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Kyle Walker",
+    "country": "England",
+    "position": "Right Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Trent Alexander-Arnold",
+    "country": "England",
+    "position": "Right Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Cole Palmer",
+    "country": "England",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 160000000
+  },
+  {
+    "name": "Marc Guéhi",
+    "country": "England",
+    "position": "Center Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Kobbie Mainoo",
+    "country": "England",
+    "position": "Midfielder",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 110000000
+  },
+  {
+    "name": "Anthony Gordon",
+    "country": "England",
+    "position": "Left Winger",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Ollie Watkins",
+    "country": "England",
+    "position": "Striker",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Ezri Konsa",
+    "country": "England",
+    "position": "Center Back",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Florian Wirtz",
+    "country": "Germany",
+    "position": "Midfielder",
+    "rating": 92,
+    "tier": "Tier S",
+    "fantasy_score": 93,
+    "starting_price": 200000000
+  },
+  {
+    "name": "Jamal Musiala",
+    "country": "Germany",
+    "position": "Midfielder",
+    "rating": 92,
+    "tier": "Tier S",
+    "fantasy_score": 92,
+    "starting_price": 200000000
+  },
+  {
+    "name": "Antonio Rüdiger",
+    "country": "Germany",
+    "position": "Center Back",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 92,
+    "starting_price": 170000000
+  },
+  {
+    "name": "İlkay Gündoğan",
+    "country": "Germany",
+    "position": "Midfielder",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Joshua Kimmich",
+    "country": "Germany",
+    "position": "Right Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Kai Havertz",
+    "country": "Germany",
+    "position": "Forward",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Marc-André ter Stegen",
+    "country": "Germany",
+    "position": "Goalkeeper",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Jonathan Tah",
+    "country": "Germany",
+    "position": "Center Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Nico Schlotterbeck",
+    "country": "Germany",
+    "position": "Center Back",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Leroy Sané",
+    "country": "Germany",
+    "position": "Right Winger",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Serge Gnabry",
+    "country": "Germany",
+    "position": "Left Winger",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Niclas Füllkrug",
+    "country": "Germany",
+    "position": "Striker",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Robert Andrich",
+    "country": "Germany",
+    "position": "Midfielder",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Maximilian Mittelstädt",
+    "country": "Germany",
+    "position": "Left Back",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Manuel Neuer",
+    "country": "Germany",
+    "position": "Goalkeeper",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 85,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Nicolò Barella",
+    "country": "Italy",
+    "position": "Midfielder",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 155000000
+  },
+  {
+    "name": "Alessandro Bastoni",
+    "country": "Italy",
+    "position": "Center Back",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Gianluigi Donnarumma",
+    "country": "Italy",
+    "position": "Goalkeeper",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Federico Dimarco",
+    "country": "Italy",
+    "position": "Left Back",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Federico Chiesa",
+    "country": "Italy",
+    "position": "Right Winger",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 105000000
+  },
+  {
+    "name": "Davide Frattesi",
+    "country": "Italy",
+    "position": "Midfielder",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Gianluca Scamacca",
+    "country": "Italy",
+    "position": "Striker",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Riccardo Calafiori",
+    "country": "Italy",
+    "position": "Center Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Giovanni Di Lorenzo",
+    "country": "Italy",
+    "position": "Right Back",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Manuel Locatelli",
+    "country": "Italy",
+    "position": "Midfielder",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Bryan Cristante",
+    "country": "Italy",
+    "position": "Midfielder",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Guglielmo Vicario",
+    "country": "Italy",
+    "position": "Goalkeeper",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Mateo Retegui",
+    "country": "Italy",
+    "position": "Striker",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Gianluca Mancini",
+    "country": "Italy",
+    "position": "Center Back",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Destiny Udogie",
+    "country": "Italy",
+    "position": "Left Back",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 105000000
+  },
+  {
+    "name": "Virgil van Dijk",
+    "country": "Netherlands",
+    "position": "Center Back",
+    "rating": 90,
+    "tier": "Tier A",
+    "fantasy_score": 92,
+    "starting_price": 160000000
+  },
+  {
+    "name": "Frenkie de Jong",
+    "country": "Netherlands",
+    "position": "Midfielder",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 89,
+    "starting_price": 145000000
+  },
+  {
+    "name": "Xavi Simons",
+    "country": "Netherlands",
+    "position": "Midfielder",
+    "rating": 88,
+    "tier": "Tier A",
+    "fantasy_score": 87,
+    "starting_price": 150000000
+  },
+  {
+    "name": "Cody Gakpo",
+    "country": "Netherlands",
+    "position": "Left Winger",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Nathan Aké",
+    "country": "Netherlands",
+    "position": "Center Back",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Jeremie Frimpong",
+    "country": "Netherlands",
+    "position": "Right Back",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Bart Verbruggen",
+    "country": "Netherlands",
+    "position": "Goalkeeper",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Denzel Dumfries",
+    "country": "Netherlands",
+    "position": "Right Back",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 84,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Micky van de Ven",
+    "country": "Netherlands",
+    "position": "Center Back",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Matthijs de Ligt",
+    "country": "Netherlands",
+    "position": "Center Back",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Tijjani Reijnders",
+    "country": "Netherlands",
+    "position": "Midfielder",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 100000000
+  },
+  {
+    "name": "Teun Koopmeiners",
+    "country": "Netherlands",
+    "position": "Midfielder",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Memphis Depay",
+    "country": "Netherlands",
+    "position": "Striker",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Donyell Malen",
+    "country": "Netherlands",
+    "position": "Right Winger",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Lutsharel Geertruida",
+    "country": "Netherlands",
+    "position": "Center Back",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Kevin De Bruyne",
+    "country": "Belgium",
+    "position": "Midfielder",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 93,
+    "starting_price": 160000000
+  },
+  {
+    "name": "Romelu Lukaku",
+    "country": "Belgium",
+    "position": "Striker",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Jérémy Doku",
+    "country": "Belgium",
+    "position": "Left Winger",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 135000000
+  },
+  {
+    "name": "Amadou Onana",
+    "country": "Belgium",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Lois Openda",
+    "country": "Belgium",
+    "position": "Striker",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Leandro Trossard",
+    "country": "Belgium",
+    "position": "Left Winger",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Youri Tielemans",
+    "country": "Belgium",
+    "position": "Midfielder",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Wout Faes",
+    "country": "Belgium",
+    "position": "Center Back",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Timothy Castagne",
+    "country": "Belgium",
+    "position": "Right Back",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Koen Casteels",
+    "country": "Belgium",
+    "position": "Goalkeeper",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Arthur Theate",
+    "country": "Belgium",
+    "position": "Center Back",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Charles De Ketelaere",
+    "country": "Belgium",
+    "position": "Forward",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 105000000
+  },
+  {
+    "name": "Johan Bakayoko",
+    "country": "Belgium",
+    "position": "Right Winger",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Orel Mangala",
+    "country": "Belgium",
+    "position": "Midfielder",
+    "rating": 78,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Zeno Debast",
+    "country": "Belgium",
+    "position": "Center Back",
+    "rating": 78,
+    "tier": "Tier B",
+    "fantasy_score": 77,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Luka Modrić",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 87,
+    "tier": "Tier A",
+    "fantasy_score": 91,
+    "starting_price": 125000000
+  },
+  {
+    "name": "Joško Gvardiol",
+    "country": "Croatia",
+    "position": "Left Back",
+    "rating": 91,
+    "tier": "Tier A",
+    "fantasy_score": 90,
+    "starting_price": 175000000
+  },
+  {
+    "name": "Mateo Kovačić",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 86,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Marcelo Brozović",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Dominik Livaković",
+    "country": "Croatia",
+    "position": "Goalkeeper",
+    "rating": 83,
+    "tier": "Tier B",
+    "fantasy_score": 86,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Mario Pašalić",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Andrej Kramarić",
+    "country": "Croatia",
+    "position": "Striker",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Lovro Majer",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Josip Šutalo",
+    "country": "Croatia",
+    "position": "Center Back",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Josip Stanišić",
+    "country": "Croatia",
+    "position": "Right Back",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 95000000
+  },
+  {
+    "name": "Luka Sučić",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 79,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Martin Baturina",
+    "country": "Croatia",
+    "position": "Midfielder",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Ante Budimir",
+    "country": "Croatia",
+    "position": "Striker",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 81,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Borna Sosa",
+    "country": "Croatia",
+    "position": "Left Back",
+    "rating": 77,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Marin Pongračić",
+    "country": "Croatia",
+    "position": "Center Back",
+    "rating": 76,
+    "tier": "Tier B",
+    "fantasy_score": 75,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Federico Valverde",
+    "country": "Uruguay",
+    "position": "Midfielder",
+    "rating": 93,
+    "tier": "Tier S",
+    "fantasy_score": 94,
+    "starting_price": 210000000
+  },
+  {
+    "name": "Darwin Núñez",
+    "country": "Uruguay",
+    "position": "Striker",
+    "rating": 86,
+    "tier": "Tier A",
+    "fantasy_score": 85,
+    "starting_price": 140000000
+  },
+  {
+    "name": "Ronald Araújo",
+    "country": "Uruguay",
+    "position": "Center Back",
+    "rating": 89,
+    "tier": "Tier A",
+    "fantasy_score": 88,
+    "starting_price": 155000000
+  },
+  {
+    "name": "Manuel Ugarte",
+    "country": "Uruguay",
+    "position": "Midfielder",
+    "rating": 85,
+    "tier": "Tier A",
+    "fantasy_score": 84,
+    "starting_price": 130000000
+  },
+  {
+    "name": "Rodrigo Bentancur",
+    "country": "Uruguay",
+    "position": "Midfielder",
+    "rating": 84,
+    "tier": "Tier A",
+    "fantasy_score": 83,
+    "starting_price": 120000000
+  },
+  {
+    "name": "Mathías Olivera",
+    "country": "Uruguay",
+    "position": "Left Back",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 80,
+    "starting_price": 85000000
+  },
+  {
+    "name": "Sergio Rochet",
+    "country": "Uruguay",
+    "position": "Goalkeeper",
+    "rating": 80,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Nicolás de la Cruz",
+    "country": "Uruguay",
+    "position": "Midfielder",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Facundo Pellistri",
+    "country": "Uruguay",
+    "position": "Right Winger",
+    "rating": 79,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 75000000
+  },
+  {
+    "name": "José María Giménez",
+    "country": "Uruguay",
+    "position": "Center Back",
+    "rating": 82,
+    "tier": "Tier B",
+    "fantasy_score": 83,
+    "starting_price": 90000000
+  },
+  {
+    "name": "Matías Viña",
+    "country": "Uruguay",
+    "position": "Left Back",
+    "rating": 78,
+    "tier": "Tier B",
+    "fantasy_score": 77,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Giorgian de Arrascaeta",
+    "country": "Uruguay",
+    "position": "Midfielder",
+    "rating": 81,
+    "tier": "Tier B",
+    "fantasy_score": 82,
+    "starting_price": 80000000
+  },
+  {
+    "name": "Brian Rodríguez",
+    "country": "Uruguay",
+    "position": "Left Winger",
+    "rating": 77,
+    "tier": "Tier B",
+    "fantasy_score": 76,
+    "starting_price": 70000000
+  },
+  {
+    "name": "Sebastian Cáceres",
+    "country": "Uruguay",
+    "position": "Center Back",
+    "rating": 78,
+    "tier": "Tier B",
+    "fantasy_score": 78,
+    "starting_price": 75000000
+  },
+  {
+    "name": "Facundo Torres",
+    "country": "Uruguay",
+    "position": "Forward",
+    "rating": 77,
+    "tier": "Tier B",
+    "fantasy_score": 76,
+    "starting_price": 70000000
+  }
+]

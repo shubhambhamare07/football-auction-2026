@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Redis - Used for real-time live auction state
+  redis:
+    image: redis:alpine
+    container_name: football-auction-redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  # MongoDB - Used for persistent storage of rooms, players, and history
+  mongodb:
+    image: mongo:latest
+    container_name: football-auction-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+  # FastAPI Backend Service
+  backend:
+    build: ./backend
+    container_name: football-auction-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - MONGO_URI=mongodb://mongodb:27017
+      - REDIS_URL=redis://redis:6379
+      - DB_NAME=football_auction
+    depends_on:
+      - mongodb
+      - redis
+    restart: always
+
+  # Next.js Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      # Leave NEXT_PUBLIC_SOCKET_URL unset here. 
+      # The app will automatically fall back to connecting to the browser's current hostname on port 8000,
+      # which works perfectly on localhost or VPS without hardcoding.
+      args:
+        - NEXT_PUBLIC_SOCKET_URL=
+    container_name: football-auction-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  mongo-data:

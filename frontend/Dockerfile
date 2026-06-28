@@ -1,0 +1,21 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+# Set dynamic build arguments for WebSocket URL
+ARG NEXT_PUBLIC_SOCKET_URL
+ENV NEXT_PUBLIC_SOCKET_URL=$NEXT_PUBLIC_SOCKET_URL
+
+RUN npm run build
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV NODE_ENV production
+
+CMD ["npm", "run", "start"]
