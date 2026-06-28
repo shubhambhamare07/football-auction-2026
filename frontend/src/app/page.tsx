@@ -98,7 +98,7 @@ export default function Page() {
       setHighestBid(data.starting_price);
       setHighestBidder(null);
       setTimeRemaining(data.time_remaining);
-      audio.playPop();
+      audio.playWhistle();
     });
 
     socket.on("timer_tick", (data: any) => {

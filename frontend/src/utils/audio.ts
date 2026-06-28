@@ -155,6 +155,56 @@ class SoundManager {
       }, idx * 100);
     });
   }
+
+  public playWhistle() {
+    this.initContext();
+    if (this.isMuted || !this.ctx) return;
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+    
+    // Play a realistic dual-oscillator whistle sound
+    const playWhistleTone = (freq: number) => {
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gainNode = this.ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+      
+      // Pitch modulation LFO for the whistle pea rattle effect
+      const lfo = this.ctx.createOscillator();
+      const lfoGain = this.ctx.createGain();
+      lfo.frequency.value = 35; // 35Hz modulation rate
+      lfoGain.gain.value = 25; // 25Hz modulation depth
+      
+      lfo.connect(lfoGain);
+      lfoGain.connect(osc.frequency);
+      
+      gainNode.gain.setValueAtTime(0, this.ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 0.03);
+      gainNode.gain.linearRampToValueAtTime(0.08, this.ctx.currentTime + 0.15);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.3);
+      
+      osc.connect(gainNode);
+      gainNode.connect(this.ctx.destination);
+      
+      lfo.start();
+      osc.start();
+      lfo.stop(this.ctx.currentTime + 0.3);
+      osc.stop(this.ctx.currentTime + 0.3);
+    };
+
+    playWhistleTone(2050);
+    playWhistleTone(2200);
+    
+    // Play a low stadium sub-drop/boom
+    this.playTone(85, 'sine', 0.5, [
+      { time: 0.01, val: 0.3 },
+      { time: 0.15, val: 0.15 },
+      { time: 0.5, val: 0 }
+    ]);
+  }
 }
 
 export const audio = new SoundManager();

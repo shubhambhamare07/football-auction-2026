@@ -19,6 +19,227 @@ interface AuctionViewProps {
   onForceEndAuction: () => void;
 }
 
+// Dynamically map country to flag theme gradients and details
+const getCountryCardStyles = (country: string = "") => {
+  const c = country.trim().toLowerCase();
+  switch (c) {
+    case "argentina":
+      return {
+        gradient: "linear-gradient(135deg, #75AADB 0%, #FFFFFF 50%, #75AADB 100%)",
+        borderAccent: "#75AADB",
+        flag: "🇦🇷",
+        textColor: "text-[#0F172A]"
+      };
+    case "brazil":
+      return {
+        gradient: "linear-gradient(135deg, #009B3A 0%, #FEDF00 50%, #002776 100%)",
+        borderAccent: "#FEDF00",
+        flag: "🇧🇷",
+        textColor: "text-white"
+      };
+    case "france":
+      return {
+        gradient: "linear-gradient(135deg, #002395 0%, #FFFFFF 50%, #ED2939 100%)",
+        borderAccent: "#ED2939",
+        flag: "🇫🇷",
+        textColor: "text-white"
+      };
+    case "spain":
+      return {
+        gradient: "linear-gradient(135deg, #C11B17 0%, #F4D03F 50%, #C11B17 100%)",
+        borderAccent: "#F4D03F",
+        flag: "🇪🇸",
+        textColor: "text-white"
+      };
+    case "portugal":
+      return {
+        gradient: "linear-gradient(135deg, #046A38 0%, #DA291C 70%, #151515 100%)",
+        borderAccent: "#DA291C",
+        flag: "🇵🇹",
+        textColor: "text-white"
+      };
+    case "germany":
+      return {
+        gradient: "linear-gradient(135deg, #151515 0%, #D00F2F 50%, #FFCC00 100%)",
+        borderAccent: "#FFCC00",
+        flag: "🇩🇪",
+        textColor: "text-white"
+      };
+    case "england":
+      return {
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 80%, #DA291C 100%)",
+        borderAccent: "#DA291C",
+        flag: "🏴",
+        textColor: "text-slate-900"
+      };
+    case "italy":
+      return {
+        gradient: "linear-gradient(135deg, #008C45 0%, #FFFFFF 50%, #CD212A 100%)",
+        borderAccent: "#CD212A",
+        flag: "🇮🇹",
+        textColor: "text-white"
+      };
+    case "netherlands":
+      return {
+        gradient: "linear-gradient(135deg, #FF4F00 0%, #1A2E40 60%, #0F1A24 100%)",
+        borderAccent: "#FF4F00",
+        flag: "🇳🇱",
+        textColor: "text-white"
+      };
+    case "belgium":
+      return {
+        gradient: "linear-gradient(135deg, #151515 0%, #FDDA24 50%, #EF3340 100%)",
+        borderAccent: "#FDDA24",
+        flag: "🇧🇪",
+        textColor: "text-white"
+      };
+    case "croatia":
+      return {
+        gradient: "linear-gradient(135deg, #C8102E 0%, #FFFFFF 50%, #003D80 100%)",
+        borderAccent: "#C8102E",
+        flag: "🇭🇷",
+        textColor: "text-white"
+      };
+    case "uruguay":
+      return {
+        gradient: "linear-gradient(135deg, #75AADB 0%, #FFFFFF 50%, #FCD116 100%)",
+        borderAccent: "#FCD116",
+        flag: "🇺🇾",
+        textColor: "text-slate-900"
+      };
+    case "morocco":
+      return {
+        gradient: "linear-gradient(135deg, #C1272D 0%, #006233 60%, #C1272D 100%)",
+        borderAccent: "#006233",
+        flag: "🇲🇦",
+        textColor: "text-white"
+      };
+    case "usa":
+      return {
+        gradient: "linear-gradient(135deg, #0A3161 0%, #FFFFFF 50%, #B31942 100%)",
+        borderAccent: "#0A3161",
+        flag: "🇺🇸",
+        textColor: "text-white"
+      };
+    case "mexico":
+      return {
+        gradient: "linear-gradient(135deg, #006847 0%, #FFFFFF 50%, #CE1126 100%)",
+        borderAccent: "#006847",
+        flag: "🇲🇽",
+        textColor: "text-white"
+      };
+    case "japan":
+      return {
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #F5F5F5 70%, #BC002D 100%)",
+        borderAccent: "#BC002D",
+        flag: "🇯🇵",
+        textColor: "text-slate-900"
+      };
+    case "south korea":
+    case "korea":
+      return {
+        gradient: "linear-gradient(135deg, #FFFFFF 0%, #0A1826 65%, #CD2E3A 100%)",
+        borderAccent: "#CD2E3A",
+        flag: "🇰🇷",
+        textColor: "text-white"
+      };
+    case "canada":
+      return {
+        gradient: "linear-gradient(135deg, #FF0000 0%, #FFFFFF 50%, #FF0000 100%)",
+        borderAccent: "#FF0000",
+        flag: "🇨🇦",
+        textColor: "text-slate-900"
+      };
+    case "australia":
+      return {
+        gradient: "linear-gradient(135deg, #0A1C2A 0%, #FFCD00 60%, #008A4B 100%)",
+        borderAccent: "#FFCD00",
+        flag: "🇦🇺",
+        textColor: "text-white"
+      };
+    case "switzerland":
+      return {
+        gradient: "linear-gradient(135deg, #D52B1E 0%, #FFFFFF 50%, #D52B1E 100%)",
+        borderAccent: "#FFFFFF",
+        flag: "🇨🇭",
+        textColor: "text-white"
+      };
+    default:
+      return {
+        gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 50%, #020617 100%)",
+        borderAccent: "rgba(255, 255, 255, 0.08)",
+        flag: "🏳️",
+        textColor: "text-white"
+      };
+  }
+};
+
+const getCardTierClass = (tier: string = "") => {
+  const t = tier.toUpperCase();
+  if (t.includes("S")) {
+    return {
+      border: "border-tier-s",
+      glow: "shadow-[0_0_35px_rgba(255,215,0,0.15)]",
+      badgeBg: "bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black",
+      color: "#FFD700"
+    };
+  }
+  if (t.includes("A")) {
+    return {
+      border: "border-tier-a",
+      glow: "shadow-[0_0_30px_rgba(147,51,234,0.15)]",
+      badgeBg: "bg-purple-600 text-white font-extrabold",
+      color: "#A855F7"
+    };
+  }
+  if (t.includes("B")) {
+    return {
+      border: "border-tier-b",
+      glow: "shadow-[0_0_25px_rgba(59,130,246,0.15)]",
+      badgeBg: "bg-blue-600 text-white font-extrabold",
+      color: "#3B82F6"
+    };
+  }
+  return {
+    border: "border-tier-c",
+    glow: "shadow-[0_0_20px_rgba(148,163,184,0.15)]",
+    badgeBg: "bg-slate-500 text-slate-950 font-bold",
+    color: "#94A3B8"
+  };
+};
+
+const PlayerSilhouette = ({ tierColor = "white", countryAccent = "white" }) => {
+  return (
+    <svg className="w-full h-full drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="playerGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stopColor={countryAccent} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={countryAccent} stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="silhouetteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.03)" />
+          <stop offset="40%" stopColor="rgba(255,255,255,0.18)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
+        </linearGradient>
+      </defs>
+      
+      <circle cx="50" cy="50" r="45" fill="url(#playerGlow)" />
+      
+      <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" className="opacity-20" />
+      <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="0.5" className="opacity-10" />
+
+      <circle cx="50" cy="32" r="12.5" fill="url(#silhouetteGrad)" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+      
+      <path d="M18 80 C18 61, 30 52, 50 52 C70 52, 82 61, 82 80 C82 82, 80 84, 78 84 L22 84 C20 84, 18 82, 18 80 Z" fill="url(#silhouetteGrad)" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+      
+      <path d="M42 52 L50 63 L58 52" stroke={tierColor} strokeWidth="1.5" strokeLinecap="round" className="opacity-80" />
+      
+      <path d="M24 75 C28 65, 38 56, 50 56" stroke="currentColor" strokeWidth="0.5" className="opacity-30" />
+      <path d="M76 75 C72 65, 62 56, 50 56" stroke="currentColor" strokeWidth="0.5" className="opacity-30" />
+    </svg>
+  );
+};
+
 export default function AuctionView({
   player,
   timeRemaining,
@@ -39,9 +260,13 @@ export default function AuctionView({
   // Find current user profile
   const me = playersList.find((p) => p.name === currentUsername);
   
+  // Find current card styling
+  const countryStyles = player ? getCountryCardStyles(player.country) : null;
+  const tierStyles = player ? getCardTierClass(player.tier) : null;
+  
   // Format money amounts
   const formatMoney = (val: number) => {
-    return (val / 1000).toLocaleString(undefined, { maximumFractionDigits: 0 }) + " M";
+    return "€" + (val / 1000000).toLocaleString(undefined, { maximumFractionDigits: 0 }) + "M";
   };
 
   const handleIncrement = (inc: number) => {
@@ -79,20 +304,7 @@ export default function AuctionView({
   // Filter bid messages
   const bidMessages = chatMessages.filter(m => m.type === "bid" || m.sender === "System");
 
-  // Get star player card outline classes based on Tier
-  const getCardBorderClass = (tier: string) => {
-    if (tier === "Tier S") return "border-[#FFD700] border-2 shadow-[0_0_25px_rgba(255,215,0,0.25)] bg-gradient-to-b from-[#1E190E] to-[#12161A]";
-    if (tier === "Tier A") return "border-[#2979FF] border shadow-[0_0_20px_rgba(41,121,255,0.2)] bg-gradient-to-b from-[#0F1523] to-[#12161A]";
-    if (tier === "Tier B") return "border-slate-400 border bg-gradient-to-b from-[#181C21] to-[#12161A]";
-    return "border-amber-700 border bg-gradient-to-b from-[#1B1714] to-[#12161A]";
-  };
 
-  const getTierBadgeColor = (tier: string) => {
-    if (tier === "Tier S") return "bg-[#FFD700] text-[#0A0D10] font-extrabold";
-    if (tier === "Tier A") return "bg-[#2979FF] text-white font-extrabold";
-    if (tier === "Tier B") return "bg-slate-400 text-slate-950 font-bold";
-    return "bg-amber-700 text-white font-bold";
-  };
 
   return (
     <div className="w-full max-w-7xl mx-auto py-4 px-4 flex flex-col lg:flex-row gap-6 relative z-10">
@@ -192,63 +404,116 @@ export default function AuctionView({
         </div>
 
         {/* Player Card Container */}
-        {player ? (
-          <div className={`w-72 rounded-2xl p-6 ${getCardBorderClass(player.tier)} flex flex-col relative overflow-hidden group`}>
+        {player && countryStyles && tierStyles ? (
+          <div 
+            key={player.name}
+            style={{ background: countryStyles.gradient }}
+            className={`w-80 h-[480px] rounded-3xl p-6 ${tierStyles.border} ${tierStyles.glow} ${countryStyles.textColor} premium-collectible-card animate-card-entrance flex flex-col relative overflow-hidden group select-none`}
+          >
+            {/* Card Glassmorphic Shell */}
+            <div className="absolute inset-0 bg-slate-950/45 backdrop-blur-[2.5px] z-1" />
             
-            {/* Country Flag / CM Position */}
-            <div className="flex justify-between items-start mb-6">
-              <div className="flex flex-col">
-                <span className="text-5xl font-extrabold tracking-tight text-white leading-none">
-                  {player.rating}
+            {/* Card Shards polygonal overlay */}
+            <div className="card-shards-overlay z-2" />
+            
+            {/* Card Shine sweep hover effect */}
+            <div className="card-shine-overlay z-5" />
+
+            {/* Dynamic spotlight shadow ring */}
+            <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-white/5 blur-3xl z-1 pointer-events-none" />
+
+            {/* Card Content Wrapper */}
+            <div className="relative z-10 flex-1 flex flex-col justify-between h-full">
+              
+              {/* Top Header: Rating, Position, Flag, Tier Shield */}
+              <div className="flex justify-between items-start">
+                <div className="flex flex-col items-center">
+                  <span className="text-5xl font-black tracking-tight leading-none drop-shadow-md">
+                    {player.rating}
+                  </span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-widest mt-1.5 opacity-90 px-2 py-0.5 bg-black/40 rounded-md text-white border border-white/5">
+                    {player.position}
+                  </span>
+                </div>
+                
+                {/* Flag and Tier Badge */}
+                <div className="flex items-center gap-2 bg-black/35 px-2.5 py-1.5 rounded-xl border border-white/10 shadow-inner">
+                  <span className="text-2xl filter drop-shadow-sm leading-none" title={player.country}>
+                    {countryStyles.flag}
+                  </span>
+                  <div className="w-[1px] h-4 bg-white/15" />
+                  <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-wider ${tierStyles.badgeBg}`}>
+                    {player.tier.replace("Tier ", "")}
+                  </span>
+                </div>
+              </div>
+
+              {/* Center: Stylized Player Silhouette */}
+              <div className="w-full h-40 flex items-center justify-center my-1 relative">
+                <div className="w-36 h-36 relative">
+                  <PlayerSilhouette tierColor={tierStyles.color} countryAccent={countryStyles.borderAccent} />
+                </div>
+              </div>
+
+              {/* Player Name */}
+              <div className="text-center">
+                <h2 className="text-2xl font-black tracking-wider uppercase truncate drop-shadow-lg leading-none py-1">
+                  {player.name}
+                </h2>
+                <span className="text-[9px] font-bold tracking-widest uppercase opacity-60">
+                  {player.country}
                 </span>
-                <span className="text-xs font-bold text-white/60 tracking-wider mt-1">
-                  {player.position}
-                </span>
               </div>
-              <div className="flex flex-col items-end gap-1">
-                <span className="text-xl" title={player.country}>🏳️</span>
-                <span className="text-[9px] font-bold text-white/40">{player.country}</span>
-              </div>
-            </div>
 
-            {/* Star Image / Avatar representation */}
-            <div className="w-full h-32 flex items-center justify-center mb-6">
-              <div className="w-24 h-24 rounded-full bg-slate-800 border-2 border-dashed border-white/10 flex items-center justify-center text-white/30 text-3xl font-extrabold shadow-inner select-none uppercase">
-                {player.name[0]}
+              {/* Attribute Stats Grid */}
+              <div className="grid grid-cols-3 gap-2 border-t border-white/10 pt-3 text-center my-1.5">
+                <div>
+                  <span className="text-[8px] font-bold opacity-50 uppercase block">OVR</span>
+                  <span className="text-xs font-extrabold">{player.rating}</span>
+                </div>
+                <div>
+                  <span className="text-[8px] font-bold opacity-50 uppercase block">Fantasy</span>
+                  <span className="text-xs font-extrabold text-[#FFD700] drop-shadow-sm">{player.fantasy_score} pts</span>
+                </div>
+                <div>
+                  <span className="text-[8px] font-bold opacity-50 uppercase block">Starting</span>
+                  <span className="text-xs font-extrabold text-white/95">{formatMoney(player.starting_price)}</span>
+                </div>
               </div>
-            </div>
 
-            {/* Name and Metadata */}
-            <div className="text-center mb-4">
-              <h2 className="text-xl font-extrabold text-white tracking-tight truncate uppercase leading-none">
-                {player.name}
-              </h2>
-              <span className={`inline-block mt-2 px-2.5 py-0.5 rounded text-[9px] uppercase tracking-wider ${getTierBadgeColor(player.tier)}`}>
-                {player.tier}
-              </span>
-            </div>
+              {/* Dynamic Live Auction Status Box */}
+              <div className="bg-black/65 border border-white/10 rounded-2xl p-3 flex items-center justify-between mt-0.5">
+                <div className="flex flex-col text-left">
+                  <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Current Bid</span>
+                  <span className="text-sm font-black text-[#00E676] drop-shadow-[0_0_8px_rgba(0,230,118,0.25)]">
+                    {formatMoney(highestBid)}
+                  </span>
+                  <span className="text-[8px] text-white/50 truncate max-w-[120px] font-medium mt-0.5">
+                    by {highestBidder || "No Bids"}
+                  </span>
+                </div>
+                <div className="h-8 w-[1px] bg-white/10" />
+                <div className="flex flex-col items-end">
+                  <span className="text-[8px] font-bold text-white/40 uppercase tracking-wide">Time Left</span>
+                  <span className={`text-sm font-black tabular-nums tracking-wide ${
+                    timeRemaining <= 5 
+                      ? "text-red-500 animate-pulse drop-shadow-[0_0_8px_rgba(239,68,68,0.35)]" 
+                      : "text-white"
+                  }`}>
+                    00:{timeRemaining.toString().padStart(2, "0")}
+                  </span>
+                </div>
+              </div>
 
-            {/* Attribute Stats Grid */}
-            <div className="grid grid-cols-3 gap-y-2 gap-x-1 border-t border-[rgba(255,255,255,0.06)] pt-4 text-center">
-              <div>
-                <span className="text-[9px] font-bold text-white/30 uppercase block">Rating</span>
-                <span className="text-xs font-bold text-white">{player.rating}</span>
-              </div>
-              <div>
-                <span className="text-[9px] font-bold text-white/30 uppercase block">Fantasy</span>
-                <span className="text-xs font-bold text-[#FFD700]">{player.fantasy_score} pts</span>
-              </div>
-              <div>
-                <span className="text-[9px] font-bold text-white/30 uppercase block">Starting</span>
-                <span className="text-xs font-bold text-white/80">{formatMoney(player.starting_price)}</span>
-              </div>
             </div>
           </div>
         ) : (
-          <div className="w-72 h-96 rounded-2xl border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 bg-[#12161A]/50">
-            <ShieldAlert className="w-10 h-10 text-white/20 mb-3" />
-            <span className="text-sm font-bold text-white/30 uppercase tracking-widest">
-              Awaiting Next Player
+          <div className="w-80 h-[480px] rounded-3xl border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 bg-[#12161A]/50 relative overflow-hidden animate-pulse">
+            {/* Spotlight cone graphic inside empty card */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.03)_0%,transparent_60%)]" />
+            <ShieldAlert className="w-12 h-12 text-white/10 mb-4 relative z-10" />
+            <span className="text-xs font-extrabold text-white/20 uppercase tracking-widest relative z-10">
+              Awaiting Next Draw
             </span>
           </div>
         )}
